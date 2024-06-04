@@ -14,7 +14,7 @@ load_dotenv(".env")
 
 # Instantiate app, set attributes
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///pet_hotel.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Set the secret key for session management

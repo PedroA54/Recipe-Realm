@@ -1,10 +1,8 @@
-from config import bcrypt, db
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Date, ForeignKey, Integer
-from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
+from config import bcrypt, db
 import itertools
 
 # Models
@@ -17,6 +15,11 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String(128), nullable=False)
 
     # Relationships
+
+    recipes = db.relationship("Recipe", backref="author", lazy=True)  # One-To-Many
+    liked_recipes = db.relationship(
+        "Recipe", secondary="likes", backref=db.backref("likes", lazy="dynamic")
+    )
 
     @validates("userName")
     def validate_userName(self, _, userName):
@@ -52,24 +55,34 @@ class Recipe:
     description = db.Column()
     ingredients = db.Column()
     instructions = db.Column()
+    users_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # Relationships
+
+    tags = db.relationship(
+        "Tag", secondary="recipe_tags", backref=db.backref("recipes", lazy="dynamic")
+    )
 
     def __repr__(self):
         return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}')"
 
 
-class Tag:
+class Tag(db.Model, SerializerMixin):
     __tablename__ = "tags"
-    id = db.Column()
-    category = db.Column()
+    id = db.Column(db.Integer, primary_key=True)
+    category = db.Column(db.String, unique=True, nullable=False)
 
-    # Relationships
-
-
-class RecipeTag:
-    __tablename__ = ""
+    def __repr__(self):
+        return f"Tag(id={self.id}, category='{self.category}')"
 
 
-class Like:
-    __tablename__ = ""
+class RecipeTag(db.Model, SerializerMixin):
+    __tablename__ = "recipe_tags"
+    recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
+
+
+class Like(db.Model, SerializerMixin):
+    __tablename__ = "likes"
+    recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True)
