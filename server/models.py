@@ -11,11 +11,10 @@ import itertools
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
-    userName = db.Column(db.String(100), nullable=False)
+    userName = db.Column(db.String(100), nullable=False, unique=True)
     _password_hash = db.Column(db.String(128), nullable=False)
 
     # Relationships
-
     recipes = db.relationship("Recipe", backref="author", lazy=True)  # One-To-Many
     liked_recipes = db.relationship(
         "Recipe", secondary="likes", backref=db.backref("likes", lazy="dynamic")
@@ -28,10 +27,6 @@ class User(db.Model, SerializerMixin):
         if len(userName) > 100:
             raise ValueError("userName cannot exceed 100 characters")
         return userName
-
-    @hybrid_property
-    def bookings(self):
-        return list(itertools.chain(*self.bookings_per_animal))
 
     @hybrid_property
     def password_hash(self):
@@ -48,17 +43,16 @@ class User(db.Model, SerializerMixin):
         return f"User(id={self.id}, userName='{self.userName}')"
 
 
-class Recipe:
+class Recipe(db.Model, SerializerMixin):
     __tablename__ = "recipes"
-    id = db.Column()
-    title = db.Column()
-    description = db.Column()
-    ingredients = db.Column()
-    instructions = db.Column()
-    users_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    ingredients = db.Column(db.Text, nullable=False)
+    instructions = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # Relationships
-
     tags = db.relationship(
         "Tag", secondary="recipe_tags", backref=db.backref("recipes", lazy="dynamic")
     )
@@ -70,7 +64,7 @@ class Recipe:
 class Tag(db.Model, SerializerMixin):
     __tablename__ = "tags"
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String, unique=True, nullable=False)
+    category = db.Column(db.String(100), unique=True, nullable=False)
 
     def __repr__(self):
         return f"Tag(id={self.id}, category='{self.category}')"
