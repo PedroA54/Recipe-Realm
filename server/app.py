@@ -148,6 +148,17 @@ class UnlikeRecipe(Resource):
         return recipe.to_dict(), 200
 
 
+# ****
+# Tag
+# ****
+
+
+class TagList(Resource):
+    def get(self):
+        tags = Tag.query.all()
+        return [tag.to_dict() for tag in tags], 200
+
+
 # Add resources to the API
 api.add_resource(SignUp, "/signup")
 api.add_resource(LogIn, "/login")
@@ -158,6 +169,7 @@ api.add_resource(RecipeList, "/recipes")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
 api.add_resource(LikeRecipe, "/recipes/<int:id>/like")
 api.add_resource(UnlikeRecipe, "/recipes/<int:id>/unlike")
+api.add_resource(TagList, "/tags")
 
 
 @app.errorhandler(404)

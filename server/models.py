@@ -51,6 +51,7 @@ class Recipe(db.Model, SerializerMixin):
     ingredients = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), nullable=False)
 
     # Relationships
     tags = db.relationship(
