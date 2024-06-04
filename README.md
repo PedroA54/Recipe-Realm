@@ -8,7 +8,6 @@
 
 - [Features](#features)
 
-- [License](#license)
 
 ## Introduction 
 
@@ -48,6 +47,4 @@ Check that your the React client displays a default page
 `http://localhost:3000`. 
 
 ## Features 
-
-## License
 
