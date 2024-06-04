@@ -1,8 +1,10 @@
+from config import bcrypt, db
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
-from config import bcrypt, db
 import itertools
 
 # Models
