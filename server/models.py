@@ -17,10 +17,14 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String(128), nullable=False)
 
     # Relationships
-    recipes = db.relationship("Recipe", backref="author", lazy=True)  # One-To-Many
+    recipes = db.relationship("Recipe", backref="author", lazy=True)
     liked_recipes = db.relationship(
         "Recipe", secondary="likes", backref=db.backref("likes", lazy="dynamic")
     )
+
+    # Serialization
+    # Excludes recipes, liked recipes, and password ofc
+    serialize_rules = ("-recipes.user", "-liked_recipes.liked_by", "-_password_hash")
 
     @validates("userName")
     def validate_userName(self, _, userName):
@@ -60,6 +64,10 @@ class Recipe(db.Model, SerializerMixin):
         "Tag", secondary="recipe_tags", backref=db.backref("recipes", lazy="dynamic")
     )
 
+    # Serialization
+    # Exclude user and tag preventing circular rrefernce
+    serialize_rules = ("-user.recipes", "-tags.recipes")
+
     def __repr__(self):
         return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}')"
 
@@ -68,6 +76,10 @@ class Tag(db.Model, SerializerMixin):
     __tablename__ = "tags"
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(100), unique=True, nullable=False)
+
+    # Serialization
+    # Exclude recipes
+    serialize_rules = ("-recipes.tags",)
 
     def __repr__(self):
         return f"Tag(id={self.id}, category='{self.category}')"
@@ -79,7 +91,15 @@ class RecipeTag(db.Model, SerializerMixin):
     tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
 
 
+def __repr__(self):
+    return f"RecipeTag(recipe_id={self.recipe_id}, tag_id={self.tag_id})"
+
+
 class Like(db.Model, SerializerMixin):
     __tablename__ = "likes"
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key=True)
+
+
+def __repr__(self):
+    return f"Like(recipe_id={self.recipe_id}, user_id={self.user_id})"
