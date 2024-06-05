@@ -5,7 +5,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates, relationship
 from datetime import datetime
-import itertools
 
 
 # User #
@@ -19,6 +18,9 @@ class User(db.Model, SerializerMixin):
     # Relationships
     recipes = relationship("Recipe", backref="user")
     comments = relationship("Comment", backref="user")
+
+    # Serialization configuration
+    serialize_rules = ("-recipes.user", "-comments.user", "_password_hash")
 
     @validates("userName")
     def validate_userName(self, _, userName):
@@ -58,6 +60,10 @@ class Recipe(db.Model, SerializerMixin):
     # Relationships
     comments = relationship("Comment", backref="recipe")
     tags = relationship("Tag", secondary="recipe_tags", backref="recipes")
+    tag_names = association_proxy("tags", "category")
+
+    # Serialization configuration
+    serialize_rules = ("-user.recipes", "-comments.recipe", "-tags.recipes")
 
     def __repr__(self):
         return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}')"
@@ -69,6 +75,9 @@ class Tag(db.Model, SerializerMixin):
     id = Column(Integer, primary_key=True)
     category = Column(String(100), unique=True, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
+
+    # Serialization configuration
+    serialize_rules = ("-recipes.tags",)
 
     def __repr__(self):
         return f"Tag(id={self.id}, category='{self.category}')"
@@ -83,6 +92,9 @@ class RecipeTag(db.Model, SerializerMixin):
     tag_id = Column(
         Integer, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True
     )
+
+    # Serialization configuration
+    serialize_rules = ("-recipe", "-tag")
 
     def __repr__(self):
         return f"RecipeTag(recipe_id={self.recipe_id}, tag_id={self.tag_id})"
@@ -100,6 +112,9 @@ class Comment(db.Model, SerializerMixin):
     user_id = Column(
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
+
+    # Serialization configuration
+    serialize_rules = ("-recipe.comments", "-user.comments")
 
     def __repr__(self):
         return f"Comment(id={self.id}, recipe_id={self.recipe_id}, user_id={self.user_id}, comment='{self.comment}')"
