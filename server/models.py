@@ -16,11 +16,16 @@ class User(db.Model, SerializerMixin):
     created_at = Column(DateTime, default=datetime.now)
 
     # Relationships
-    recipes = relationship("Recipe", backref="user")
-    comments = relationship("Comment", backref="user")
+    recipes = relationship("Recipe", back_populates="user")
+    comments = relationship("Comment", back_populates="user")
 
     # Serialization configuration
-    serialize_rules = ("-recipes.user", "-comments.user", "_password_hash")
+    serialize_rules = (
+        "-recipes.user",
+        "-comments",
+        "-_password_hash",
+        "-created_at",
+    )
 
     @validates("userName")
     def validate_userName(self, _, userName):
@@ -55,15 +60,20 @@ class Recipe(db.Model, SerializerMixin):
     instructions = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    tag_id = Column(Integer, ForeignKey("tags.id", ondelete="CASCADE"), nullable=False)
 
     # Relationships
-    comments = relationship("Comment", backref="recipe")
-    tags = relationship("Tag", secondary="recipe_tags", backref="recipes")
+    user = relationship("User", back_populates="recipes")
+    comments = relationship("Comment", back_populates="recipe")
+    tags = relationship("Tag", secondary="recipe_tags", back_populates="recipes")
     tag_names = association_proxy("tags", "category")
 
     # Serialization configuration
-    serialize_rules = ("-user.recipes", "-comments.recipe", "-tags.recipes")
+    serialize_rules = (
+        "-user.recipes",
+        "-comments.recipe",
+        "-tags.recipes",
+        "-created_at",
+    )
 
     def __repr__(self):
         return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}')"
@@ -76,8 +86,11 @@ class Tag(db.Model, SerializerMixin):
     category = Column(String(100), unique=True, nullable=False)
     created_at = Column(DateTime, default=datetime.now)
 
+    # Relationships
+    recipes = relationship("Recipe", secondary="recipe_tags", back_populates="tags")
+
     # Serialization configuration
-    serialize_rules = ("-recipes.tags",)
+    serialize_rules = ("-recipes.tags", "-created_at")
 
     def __repr__(self):
         return f"Tag(id={self.id}, category='{self.category}')"
@@ -113,8 +126,17 @@ class Comment(db.Model, SerializerMixin):
         Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
     )
 
+    # Relationships
+    recipe = relationship("Recipe", back_populates="comments")
+    user = relationship("User", back_populates="comments")
+
     # Serialization configuration
-    serialize_rules = ("-recipe.comments", "-user.comments")
+    serialize_rules = (
+        "-recipe.comments",
+        "-recipe.user",
+        "-user.comments",
+        "-user.recipes",
+    )
 
     def __repr__(self):
         return f"Comment(id={self.id}, recipe_id={self.recipe_id}, user_id={self.user_id}, comment='{self.comment}')"

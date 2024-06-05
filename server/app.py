@@ -6,7 +6,7 @@ from config import api, app, bcrypt, db
 # Remote library imports
 from flask import jsonify, request, session
 from flask_restful import Resource
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, NoResultFound
 
 # Add your model imports
 from models import User, Recipe, Tag, Comment
@@ -87,21 +87,38 @@ class UpdateUser(Resource):
 
 class RecipeList(Resource):
     def get(self):
-        recipes = Recipe.query.all()
-        return [recipe.to_dict() for recipe in recipes], 200
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        try:
+            user = User.query.get(user_id)
+            if not user:
+                return {"error": "User not found"}, 404
+
+            recipes = Recipe.query.filter_by(user_id=user_id).all()
+            return [recipe.to_dict() for recipe in recipes], 200
+        except NoResultFound:
+            return {"error": "No recipes found for this user"}, 404
 
     def post(self):
-        data = request.get_json()
-        new_recipe = Recipe(
-            title=data["title"],
-            description=data["description"],
-            ingredients=data["ingredients"],
-            instructions=data["instructions"],
-            user_id=session.get("user_id"),
-        )
-        db.session.add(new_recipe)
-        db.session.commit()
-        return new_recipe.to_dict(), 201
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        if request.is_json:
+            data = request.get_json()
+            new_recipe = Recipe(
+                title=data["title"],
+                description=data["description"],
+                ingredients=data["ingredients"],
+                instructions=data["instructions"],
+                user_id=user_id,
+            )
+            db.session.add(new_recipe)
+            db.session.commit()
+            return new_recipe.to_dict(), 201
+        return {"error": "Request must be JSON"}, 400
 
 
 class RecipeDetail(Resource):
@@ -112,10 +129,11 @@ class RecipeDetail(Resource):
     def patch(self, id):
         recipe = Recipe.query.get_or_404(id)
         data = request.get_json()
-        recipe.title = data.get("title", recipe.title)
-        recipe.description = data.get("description", recipe.description)
-        recipe.ingredients = data.get("ingredients", recipe.ingredients)
-        recipe.instructions = data.get("instructions", recipe.instructions)
+
+        for field in ["title", "description", "ingredients", "instructions"]:
+            if field in data:
+                setattr(recipe, field, data[field])
+
         db.session.commit()
         return recipe.to_dict(), 200
 
@@ -139,7 +157,7 @@ class CommentRecipe(Resource):
     def post(self, id):
         data = request.get_json()
         user_id = session.get("user_id")
-        new_comment = Comment(content=data["content"], user_id=user_id, recipe_id=id)
+        new_comment = Comment(comment=data["comment"], user_id=user_id, recipe_id=id)
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict(), 201
@@ -147,7 +165,7 @@ class CommentRecipe(Resource):
     def patch(self, id, comment_id):
         comment = Comment.query.get_or_404(comment_id)
         data = request.get_json()
-        comment.content = data.get("content", comment.content)
+        comment.comment = data.get("comment", comment.comment)
         db.session.commit()
         return comment.to_dict(), 200
 
@@ -177,7 +195,7 @@ api.add_resource(CheckSession, "/check_session")
 api.add_resource(UpdateUser, "/users/<int:id>")
 api.add_resource(RecipeList, "/recipes")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
-# api.add_resource(commentRecipe, "/recipes/<int:id>/comment")
+api.add_resource(CommentRecipe, "/recipes/<int:id>/comment")
 api.add_resource(TagList, "/tags")
 
 
