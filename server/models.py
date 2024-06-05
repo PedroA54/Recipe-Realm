@@ -92,6 +92,8 @@ class Tag(db.Model, SerializerMixin):
     # Serialization configuration
     serialize_rules = ("-recipes.tags", "-created_at")
 
+    serialize_only = ("id", "category")
+
     def __repr__(self):
         return f"Tag(id={self.id}, category='{self.category}')"
 
@@ -132,8 +134,7 @@ class Comment(db.Model, SerializerMixin):
 
     # Serialization configuration
     serialize_rules = (
-        "-recipe.comments",
-        "-recipe.user",
+        "-recipe",
         "-user.comments",
         "-user.recipes",
     )

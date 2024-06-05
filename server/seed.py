@@ -58,7 +58,7 @@ if __name__ == "__main__":
         t5 = Tag(category="Indian")
         t6 = Tag(category="American")
 
-        db.session.add_all([t1, t2, t3, t4, t5])
+        db.session.add_all([t1, t2, t3, t4, t5, t6])
         db.session.commit()
 
         # Recipe Tag
@@ -75,9 +75,33 @@ if __name__ == "__main__":
         # comment, recipe_id, user_id
 
         c1 = Comment(comment="wow great recipe", recipe_id=1, user_id=2)
-        c2 = Comment(comment="wow great recipe", recipe_id=2, user_id=1)
+        c2 = Comment(comment="Awesome recipe", recipe_id=2, user_id=1)
+        c3 = Comment(comment="Really tasty", recipe_id=3, user_id=1)
 
-        db.session.add_all([c1, c2])
+        db.session.add_all([c1, c2, c3])
         db.session.commit()
 
 print("Seeding finished.")
+
+# # Delete all data
+# # Standard library imports
+
+# from app import app
+# from config import db
+# from models import User, Recipe, RecipeTag, Tag, Comment
+
+# if __name__ == "__main__":
+#     with app.app_context():
+#         print("Deleting all data...")
+
+#         # Delete all data from tables
+#         db.session.query(Comment).delete()
+#         db.session.query(RecipeTag).delete()
+#         db.session.query(Recipe).delete()
+#         db.session.query(User).delete()
+#         db.session.query(Tag).delete()
+
+#         # Commit the changes
+#         db.session.commit()
+
+#         print("All data deleted.")
