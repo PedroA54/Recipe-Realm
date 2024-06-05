@@ -177,7 +177,7 @@ api.add_resource(CheckSession, "/check_session")
 api.add_resource(UpdateUser, "/users/<int:id>")
 api.add_resource(RecipeList, "/recipes")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
-api.add_resource(commentRecipe, "/recipes/<int:id>/comment")
+# api.add_resource(commentRecipe, "/recipes/<int:id>/comment")
 api.add_resource(TagList, "/tags")
 
 
