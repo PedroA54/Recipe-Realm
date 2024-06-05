@@ -74,48 +74,7 @@ if __name__ == "__main__":
         db.session.add_all([rt1, rt2, rt3])
         db.session.commit()
 
-        # like
-        # recipe_id, user_id
-
-        l1 = Like(recipe_id="1", user_id="2")
-        l2 = Like(recipe_id="2", user_id="1")
-
-        db.session.add_all([l1, l2])
-        db.session.commit()
+        # Comment
 
 
 print("Seeding finished.")
-
-
-# # Standard library imports
-# from app import app
-# from config import db
-# from models import User, Recipe, RecipeTag, Tag, Like
-
-# if __name__ == "__main__":
-#     with app.app_context():
-#         print("Deleting all data...")
-
-#         # Delete records from the tables in the reverse order of their creation to avoid foreign key constraints violations
-
-#         # Delete likes
-#         db.session.query(Like).delete()
-#         db.session.commit()
-
-#         # Delete recipe tags
-#         db.session.query(RecipeTag).delete()
-#         db.session.commit()
-
-#         # Delete recipes
-#         db.session.query(Recipe).delete()
-#         db.session.commit()
-
-#         # Delete tags
-#         db.session.query(Tag).delete()
-#         db.session.commit()
-
-#         # Delete users
-#         db.session.query(User).delete()
-#         db.session.commit()
-
-#         print("All data deleted.")

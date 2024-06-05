@@ -9,7 +9,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 
 # Add your model imports
-from models import User, Recipe, Tag, RecipeTag, Like
+from models import User, Recipe, Tag, Comment
 
 
 @app.route("/")
@@ -126,26 +126,36 @@ class RecipeDetail(Resource):
         return "", 204
 
 
-class LikeRecipe(Resource):
-    def post(self, id):
-        recipe = Recipe.query.get_or_404(id)
-        user_id = session.get("user_id")
-        user = User.query.get_or_404(user_id)
-        if recipe not in user.liked_recipes:
-            user.liked_recipes.append(recipe)
-            db.session.commit()
-        return recipe.to_dict(), 200
+# *******
+# Comment
+# *******
 
 
-class UnlikeRecipe(Resource):
+class CommentRecipe(Resource):
+    def get(self, id):
+        comments = Comment.query.filter_by(recipe_id=id).all()
+        return [comment.to_dict() for comment in comments], 200
+
     def post(self, id):
-        recipe = Recipe.query.get_or_404(id)
+        data = request.get_json()
         user_id = session.get("user_id")
-        user = User.query.get_or_404(user_id)
-        if recipe in user.liked_recipes:
-            user.liked_recipes.remove(recipe)
-            db.session.commit()
-        return recipe.to_dict(), 200
+        new_comment = Comment(content=data["content"], user_id=user_id, recipe_id=id)
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict(), 201
+
+    def patch(self, id, comment_id):
+        comment = Comment.query.get_or_404(comment_id)
+        data = request.get_json()
+        comment.content = data.get("content", comment.content)
+        db.session.commit()
+        return comment.to_dict(), 200
+
+    def delete(self, id, comment_id):
+        comment = Comment.query.get_or_404(comment_id)
+        db.session.delete(comment)
+        db.session.commit()
+        return "", 204
 
 
 # ****
@@ -167,8 +177,7 @@ api.add_resource(CheckSession, "/check_session")
 api.add_resource(UpdateUser, "/users/<int:id>")
 api.add_resource(RecipeList, "/recipes")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
-api.add_resource(LikeRecipe, "/recipes/<int:id>/like")
-api.add_resource(UnlikeRecipe, "/recipes/<int:id>/unlike")
+api.add_resource(commentRecipe, "/recipes/<int:id>/comment")
 api.add_resource(TagList, "/tags")
 
 
