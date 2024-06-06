@@ -10,7 +10,7 @@ import ProfilPage from '../pages/ProfilePage'
 import NavBar from './NavBar';
 
 function App() {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState("");
 
     useEffect(() => {
         fetch('/check_session', {
@@ -47,7 +47,7 @@ function App() {
     return (
         <Router>
             <div>
-                <NavBar user={user} on Logout={handleLogout} />
+                <NavBar user={user} onLogout={handleLogout} />
                 <Switch>
                     <Route exact path="/">
                         <EntryPage />
