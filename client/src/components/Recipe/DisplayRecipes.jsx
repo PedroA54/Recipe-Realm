@@ -16,13 +16,17 @@ function AllRecipes() {
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (
-                <ul>
+                <div>
                     {recipes.map(recipe => (
-                        <li key={recipe.id}>
-                            {recipe.name} - {recipe.description}
-                        </li>
+                        <div key={recipe.id}>
+                            <h3>{recipe.title}</h3>
+                            <p><strong>Description:</strong> {recipe.description}</p>
+                            <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
+                            <p><strong>Instructions:</strong> {recipe.instructions}</p>
+                            
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
