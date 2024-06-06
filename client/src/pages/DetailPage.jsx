@@ -7,7 +7,7 @@ function DetailPage({ user }) {
     }
     return (
         <>
-        <h1>  DetailPage</h1>
+        <h1>DetailPage</h1>
         </>
     );
 }

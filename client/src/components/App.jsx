@@ -3,10 +3,10 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Signup from '../components/User/Signup';
 import Login from '../components/User/Login';
 import EntryPage from '../pages/EntryPage'
-import HomePage from '../pages/EntryPage'
-import DetailPage from '../pages/EntryPage'
-import ManagementPage from '../pages/EntryPage'
-import ProfilPage from '../pages/ProfilePage'
+import HomePage from '../pages/HomePage'
+import DetailPage from '../pages/DetailPage'
+import ManagementPage from '../pages/ManagementPage'
+import ProfilePage from '../pages/ProfilePage'
 import NavBar from './NavBar';
 
 function App() {
@@ -49,33 +49,27 @@ function App() {
             <div>
                 <NavBar user={user} onLogout={handleLogout} />
                 <Switch>
-                    <Route exact path="/">
-                        <EntryPage />
-                    </Route>
-                    <Route path="/home">
-                        <HomePage user={user}/>
-                    </Route>
-
-                    <Route path="/detail">
-                        <DetailPage user={user} />
-                    </Route>
-
-                    <Route path="/management">
-                        <ManagementPage user={user} />
-                    </Route>
-
-                    <Route path="/profile">
-                        <ProfilPage user={user} />
-                    </Route>
-
-                    <Route path="/signup">
-                        <Signup onLogin={handleLogin} user={user} setUser={setUser} />
-                    </Route>
-
-                    <Route path="/login">
-                        <Login onLogin={handleLogin} user={user} setUser={setUser} />
-                    </Route>
-
+    <Route exact path="/">
+        <EntryPage />
+    </Route>
+    <Route path="/home">
+        <HomePage user={user}/>
+    </Route>
+    <Route path="/detail">
+        <DetailPage user={user} />
+    </Route>
+    <Route path="/management">
+        <ManagementPage user={user} />
+    </Route>
+    <Route path="/profile">
+        <ProfilePage user={user} />
+    </Route>
+    <Route path="/signup">
+        <Signup onLogin={handleLogin} user={user} setUser={setUser} />
+    </Route>
+    <Route path="/login">
+        <Login onLogin={handleLogin} user={user} setUser={setUser} />
+    </Route>
                 </Switch>
             </div>
         </Router>

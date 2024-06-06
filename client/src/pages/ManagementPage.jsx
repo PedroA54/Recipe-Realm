@@ -7,7 +7,7 @@ function ManagementPage({ user }) {
     }
     return (
         <>
-        <h1>  ManagementPage</h1>
+        <h1>ManagementPage</h1>
         </>
     );
 }
