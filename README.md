@@ -11,6 +11,8 @@
 
 ## Introduction 
 
+Welcome to Recipe Realm
+
 ## Installation
 
 To download the dependencies for the backend server, run:
@@ -48,3 +50,6 @@ Check that your the React client displays a default page
 
 ## Features 
 
+- Signup
+- Login 
+- Logout 
