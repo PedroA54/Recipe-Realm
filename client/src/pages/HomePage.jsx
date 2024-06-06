@@ -1,7 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-function HomePage() {
+function HomePage({ user }) {
+    if (user === null) {
+        return <Redirect to="/login" />
+    }
     return (
         <>
         <h1> HomePage</h1>

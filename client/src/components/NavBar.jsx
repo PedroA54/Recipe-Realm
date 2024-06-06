@@ -9,7 +9,7 @@ function NavBar({ user, onLogout }) {
             {user ? (
                 <>
                     <NavLink to="/home" >
-                        Home Page
+                        Home
                     </NavLink>
                     <NavLink to="/management" >
                         Manage
