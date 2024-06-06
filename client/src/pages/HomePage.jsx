@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import AddRecipe from "../components/Recipe/RecipeForm";
-
+import AllRecipes from "../components/Recipe/DisplayRecipes";
 
 function HomePage({ user }) {
     if (user === null) {
@@ -18,6 +18,7 @@ function HomePage({ user }) {
             <div>
 
                 <AddRecipe />
+                <AllRecipes />
             </div>
             
             </>
