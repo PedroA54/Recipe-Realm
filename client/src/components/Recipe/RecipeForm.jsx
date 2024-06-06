@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
 
 function AddRecipe() {
     const [title, setTitle] = useState('');
@@ -8,7 +8,6 @@ function AddRecipe() {
     const [instructions, setInstructions] = useState('');
     const [tag, setTag] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

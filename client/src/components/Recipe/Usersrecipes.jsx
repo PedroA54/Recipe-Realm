@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-function AllRecipes() {
+function UserRecipes() {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        fetch('/recipes')
+        fetch('/recipesuser')
             .then(response => response.json())
             .then(data => setRecipes(data))
             .catch(error => console.error('Error fetching recipes:', error));
@@ -32,4 +32,4 @@ function AllRecipes() {
     );
 }
 
-export default AllRecipes;
+export default UserRecipes;
