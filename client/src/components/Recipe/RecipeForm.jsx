@@ -6,6 +6,7 @@ function AddRecipe() {
     const [description, setDescription] = useState('');
     const [ingredients, setIngredients] = useState('');
     const [instructions, setInstructions] = useState('');
+    const [tag, setTag] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const history = useHistory();
 
@@ -22,7 +23,8 @@ function AddRecipe() {
                     title: title,
                     description: description,
                     ingredients: ingredients,
-                    instructions: instructions
+                    instructions: instructions,
+                    tag: tag  // Corrected the variable name to lowercase and added missing comma
                 }),
             });
 
@@ -41,6 +43,7 @@ function AddRecipe() {
             setDescription('');
             setIngredients('');
             setInstructions('');
+            setTag('');
 
             // Navigate to the desired route after successful submission
             // history.push('/home');
@@ -54,12 +57,11 @@ function AddRecipe() {
             <h2>Add Recipe</h2>
             <div>
                 <label>Title:</label>
-                <input
-                    type="text"
+                <textarea
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
-                />
+                ></textarea>
             </div>
             <div>
                 <label>Description:</label>
@@ -84,6 +86,22 @@ function AddRecipe() {
                     onChange={(e) => setInstructions(e.target.value)}
                     required
                 ></textarea>
+            </div>
+            <div>
+                <label>Category:</label>
+                <select
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                    required
+                >
+                    <option value="">Select Category</option>
+                    <option value="1">Italian</option>
+                    <option value="2">Mexican</option>
+                    <option value="3">Asian</option>
+                    <option value="4">Vegetarian</option>
+                    <option value="5">Indian</option>
+                    <option value="6">American</option>
+                </select>
             </div>
             <button type="submit">Add Recipe</button>
             {successMessage && <p>{successMessage}</p>}

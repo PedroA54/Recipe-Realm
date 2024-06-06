@@ -117,16 +117,33 @@ class RecipeList(Resource):
 
         if request.is_json:
             data = request.get_json()
-            new_recipe = Recipe(
-                title=data["title"],
-                description=data["description"],
-                ingredients=data["ingredients"],
-                instructions=data["instructions"],
-                user_id=user_id,
-            )
-            db.session.add(new_recipe)
-            db.session.commit()
-            return new_recipe.to_dict(), 201
+            tag_id = data.get("tag")
+
+            try:
+                # Fetch the tag
+                tag = Tag.query.get(tag_id)
+                if not tag:
+                    return {"error": "Invalid tag"}, 400
+
+                # Create the new recipe
+                new_recipe = Recipe(
+                    title=data["title"],
+                    description=data["description"],
+                    ingredients=data["ingredients"],
+                    instructions=data["instructions"],
+                    user_id=user_id,
+                )
+                new_recipe.tags.append(tag)  # Associate the tag with the recipe
+
+                # Save to the database
+                db.session.add(new_recipe)
+                db.session.commit()
+
+                return new_recipe.to_dict(), 201
+            except IntegrityError as e:
+                db.session.rollback()
+                return {"errors": [str(e)]}, 422
+
         return {"error": "Request must be JSON"}, 400
 
 

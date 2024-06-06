@@ -8,6 +8,7 @@ import DetailPage from '../pages/DetailPage'
 import ManagementPage from '../pages/ManagementPage'
 import ProfilePage from '../pages/ProfilePage'
 import NavBar from './NavBar';
+import '../style.css';
 
 function App() {
     const [user, setUser] = useState("");
