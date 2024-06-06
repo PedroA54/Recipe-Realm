@@ -94,7 +94,8 @@ class UpdateUser(Resource):
 # ********
 
 
-class RecipeList(Resource):
+# Recipes made only by user
+class RecipeUser(Resource):
     def get(self):
         user_id = session.get("user_id")
         if not user_id:
@@ -117,16 +118,73 @@ class RecipeList(Resource):
 
         if request.is_json:
             data = request.get_json()
-            new_recipe = Recipe(
-                title=data["title"],
-                description=data["description"],
-                ingredients=data["ingredients"],
-                instructions=data["instructions"],
-                user_id=user_id,
-            )
-            db.session.add(new_recipe)
-            db.session.commit()
-            return new_recipe.to_dict(), 201
+            tag_id = data.get("tag")
+
+            try:
+                tag = Tag.query.get(tag_id)
+                if not tag:
+                    return {"error": "Invalid tag"}, 400
+
+                new_recipe = Recipe(
+                    title=data["title"],
+                    description=data["description"],
+                    ingredients=data["ingredients"],
+                    instructions=data["instructions"],
+                    user_id=user_id,
+                )
+                new_recipe.tags.append(tag)
+
+                db.session.add(new_recipe)
+                db.session.commit()
+
+                return new_recipe.to_dict(), 201
+            except IntegrityError as e:
+                db.session.rollback()
+                return {"errors": [str(e)]}, 422
+
+        return {"error": "Request must be JSON"}, 400
+
+
+# All Recipes by any user
+class RecipeListAll(Resource):
+    def get(self):
+        try:
+            recipes = Recipe.query.all()
+            return [recipe.to_dict() for recipe in recipes], 200
+        except Exception as e:
+            return {"error": str(e)}, 500
+
+    def post(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        if request.is_json:
+            data = request.get_json()
+            tag_id = data.get("tag")
+
+            try:
+                tag = Tag.query.get(tag_id)
+                if not tag:
+                    return {"error": "Invalid tag"}, 400
+
+                new_recipe = Recipe(
+                    title=data["title"],
+                    description=data["description"],
+                    ingredients=data["ingredients"],
+                    instructions=data["instructions"],
+                    user_id=user_id,
+                )
+                new_recipe.tags.append(tag)
+
+                db.session.add(new_recipe)
+                db.session.commit()
+
+                return new_recipe.to_dict(), 201
+            except IntegrityError as e:
+                db.session.rollback()
+                return {"errors": [str(e)]}, 422
+
         return {"error": "Request must be JSON"}, 400
 
 
@@ -202,7 +260,8 @@ api.add_resource(LogIn, "/login")
 api.add_resource(LogOut, "/logout")
 api.add_resource(CheckSession, "/check_session")
 api.add_resource(UpdateUser, "/users/<int:id>")
-api.add_resource(RecipeList, "/recipes")
+api.add_resource(RecipeListAll, "/recipes")
+api.add_resource(RecipeUser, "/recipesuser")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
 api.add_resource(CommentRecipe, "/recipes/<int:id>/comments")
 api.add_resource(TagList, "/tags")

@@ -1,15 +1,16 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import RecipeCard from '../components/Recipe/RecipeCard';
 
 function DetailPage({ user }) {
-    if (user === null) {
-        return <Redirect to="/login" />
-    }
+    const { id } = useParams();
+    
     return (
-        <>
-        <h1>DetailPage</h1>
-        </>
+        <div>
+            <h2>Recipe Detail</h2>
+            <RecipeCard recipeId={id} />
+        </div>
     );
 }
 
-export default  DetailPage;
+export default DetailPage;

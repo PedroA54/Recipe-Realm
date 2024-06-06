@@ -73,6 +73,7 @@ class Recipe(db.Model, SerializerMixin):
         "-comments.recipe",
         "-tags.recipes",
         "-created_at",
+        "tags.category",
     )
 
     def __repr__(self):

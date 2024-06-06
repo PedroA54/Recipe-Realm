@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function AllRecipes() {
     const [recipes, setRecipes] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         fetch('/recipes')
@@ -9,6 +11,10 @@ function AllRecipes() {
             .then(data => setRecipes(data))
             .catch(error => console.error('Error fetching recipes:', error));
     }, []);
+
+    const handleViewClick = (id) => {
+        history.push(`/detail/${id}`);
+    };
 
     return (
         <div>
@@ -23,7 +29,8 @@ function AllRecipes() {
                             <p><strong>Description:</strong> {recipe.description}</p>
                             <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                             <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                            
+                            <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
+                            <button onClick={() => handleViewClick(recipe.id)}>View</button>
                         </div>
                     ))}
                 </div>
