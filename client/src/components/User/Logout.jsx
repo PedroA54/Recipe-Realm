@@ -14,8 +14,8 @@ function LogOut({ setUser }) {
             if (!response.ok) {
                 throw new Error('Logout failed');
             }
-            setUser(null); // Clear the user state
-            setLoggedOut(true); // Trigger redirect
+            setUser(null); 
+            setLoggedOut(true); 
         } catch (error) {
             console.error('Logout failed:', error);
             toast.error('Logout failed. Please try again later.');
