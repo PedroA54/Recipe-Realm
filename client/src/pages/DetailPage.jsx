@@ -1,21 +1,15 @@
 import React from 'react';
-import ReactModal from 'react-modal';
-import { Redirect, useParams } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
+import RecipeCard from '../components/Recipe/RecipeCard';
 
 function DetailPage({ user }) {
     const { id } = useParams();
-
-    if (user === null) {
-        return <Redirect to="/login" />
-    }
-
+    
     return (
-        <>
-            <h1>DetailPage</h1>
-            <p>Recipe ID: {id}</p>
-            
-        </>
+        <div>
+            <h2>Recipe Detail</h2>
+            <RecipeCard recipeId={id} />
+        </div>
     );
 }
 

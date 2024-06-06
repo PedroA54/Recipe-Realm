@@ -6,27 +6,19 @@ import CategoryTag from "../components/Tags/CategoryTag";
 
 function HomePage({ user }) {
     if (user === null) {
-        return <Redirect to="/login" />
+        return <Redirect to="/login" />;
     }
     return (
-        
-            <>
+        <>
             <header>
                 <h1>HomePage</h1>
             </header>
-            
-
             <div>
-
                 <AddRecipe />
                 <AllRecipes />
                 <CategoryTag />
             </div>
-            
-            </>
-            
-        
-        
+        </>
     );
 }
 

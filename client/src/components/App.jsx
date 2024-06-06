@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Signup from '../components/User/Signup';
 import Login from '../components/User/Login';
-import EntryPage from '../pages/EntryPage'
-import HomePage from '../pages/HomePage'
-import DetailPage from '../pages/DetailPage'
-import ManagementPage from '../pages/ManagementPage'
-import ProfilePage from '../pages/ProfilePage'
+import EntryPage from '../pages/EntryPage';
+import HomePage from '../pages/HomePage';
+import DetailPage from '../pages/DetailPage';
+import ManagementPage from '../pages/ManagementPage';
+import ProfilePage from '../pages/ProfilePage';
 import NavBar from './NavBar';
 import '../style.css';
 
@@ -50,32 +50,17 @@ function App() {
             <div>
                 <NavBar user={user} onLogout={handleLogout} />
                 <Switch>
-    <Route exact path="/">
-        <EntryPage />
-    </Route>
-    <Route path="/home">
-        <HomePage user={user}/>
-    </Route>
-    <Route path="/detail">
-        <DetailPage user={user} />
-    </Route>
-    <Route path="/management">
-        <ManagementPage user={user} />
-    </Route>
-    <Route path="/profile">
-        <ProfilePage user={user} />
-    </Route>
-    <Route path="/signup">
-        <Signup onLogin={handleLogin} user={user} setUser={setUser} />
-    </Route>
-    <Route path="/login">
-        <Login onLogin={handleLogin} user={user} setUser={setUser} />
-    </Route>
+                    <Route exact path="/" component={EntryPage} />
+                    <Route path="/home" component={() => <HomePage user={user} />} />
+                    <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
+                    <Route path="/management" component={() => <ManagementPage user={user} />} />
+                    <Route path="/profile" component={() => <ProfilePage user={user} />} />
+                    <Route path="/signup" component={() => <Signup onLogin={handleLogin} user={user} setUser={setUser} />} />
+                    <Route path="/login" component={() => <Login onLogin={handleLogin} user={user} setUser={setUser} />} />
                 </Switch>
             </div>
         </Router>
-    )
-    
+    );
 }
 
 export default App;
