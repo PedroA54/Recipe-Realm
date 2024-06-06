@@ -94,6 +94,7 @@ class UpdateUser(Resource):
 # ********
 
 
+# Recipes made only by user
 class RecipeUser(Resource):
     def get(self):
         user_id = session.get("user_id")
@@ -144,6 +145,7 @@ class RecipeUser(Resource):
         return {"error": "Request must be JSON"}, 400
 
 
+# All Recipes by any user
 class RecipeListAll(Resource):
     def get(self):
         try:
