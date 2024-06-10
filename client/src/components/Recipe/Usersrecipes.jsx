@@ -107,6 +107,7 @@ function UserRecipes() {
                                     <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                                     <p><strong>Instructions:</strong> {recipe.instructions}</p>
                                     <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
+                                    <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                                     <button onClick={() => handleEdit(recipe.id)}>Edit</button>
                                     <button onClick={() => handleDelete(recipe.id)}>Delete</button>
                                 </div>
