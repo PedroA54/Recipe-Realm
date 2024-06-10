@@ -44,8 +44,6 @@ function AddRecipe() {
             setInstructions('');
             setTag('');
 
-            // Navigate to the desired route after successful submission
-            // history.push('/home');
         } catch (error) {
             console.error('Failed to add recipe:', error);
         }
@@ -56,11 +54,11 @@ function AddRecipe() {
             <h2>Add Recipe</h2>
             <div>
                 <label>Title:</label>
-                <textarea
+                <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
-                ></textarea>
+                ></input>
             </div>
             <div>
                 <label>Description:</label>
