@@ -95,7 +95,7 @@ class UpdateUser(Resource):
 
 
 # Recipes made only by user
-class RecipeUser(Resource):
+class RecipeListUser(Resource):
     def get(self):
         user_id = session.get("user_id")
         if not user_id:
@@ -268,7 +268,7 @@ api.add_resource(LogOut, "/logout")
 api.add_resource(CheckSession, "/check_session")
 api.add_resource(UpdateUser, "/users/<int:id>")
 api.add_resource(RecipeListAll, "/recipes")
-api.add_resource(RecipeUser, "/recipesuser")
+api.add_resource(RecipeListUser, "/recipesuser")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
 api.add_resource(CommentRecipe, "/recipes/<int:id>/comments")
 api.add_resource(TagList, "/tags")

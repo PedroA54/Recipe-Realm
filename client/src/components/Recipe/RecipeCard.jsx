@@ -26,6 +26,7 @@ function RecipeCard({ recipeId }) {
         <div className="recipe-card">
             <h2>{recipe.title}</h2>
             <h3>Photo</h3>
+            <p><img  src={recipe.photo} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
             <p>{recipe.description}</p>
             <h3>Ingredients</h3>
             <ul>
