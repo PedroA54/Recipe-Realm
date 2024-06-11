@@ -55,13 +55,18 @@ if __name__ == "__main__":
         # Tag
         # id, category
         t1 = Tag(category="Italian")
-        t2 = Tag(category="Mexican")
+        t2 = Tag(category="Spanish")
         t3 = Tag(category="Asian")
-        t4 = Tag(category="Vegetarian")
-        t5 = Tag(category="Indian")
-        t6 = Tag(category="American")
+        t4 = Tag(category="Indian")
+        t5 = Tag(category="American")
+        t6 = Tag(category="Polish")
+        t7 = Tag(category="African")
+        t8 = Tag(category="German")
+        t9 = Tag(category="Vegan")
+        t10 = Tag(category="Vegetarian")
+        t11 = Tag(category="All")
 
-        db.session.add_all([t1, t2, t3, t4, t5, t6])
+        db.session.add_all([t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11])
         db.session.commit()
 
         # Recipe Tag
