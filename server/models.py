@@ -78,7 +78,7 @@ class Recipe(db.Model, SerializerMixin):
     )
 
     def __repr__(self):
-        return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}')"
+        return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', ingredients='{self.ingredients}', instructions='{self.instructions}', photo_url='{self.photo_url}')"
 
 
 # Food Type Tag #

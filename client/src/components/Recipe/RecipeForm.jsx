@@ -38,8 +38,6 @@ function AddRecipe() {
 
             // Set the success message
             setSuccessMessage('Recipe has been added');
-
-            // Clear the form fields
             setTitle('');
             setDescription('');
             setIngredients('');
@@ -58,10 +56,11 @@ function AddRecipe() {
             <div>
                 <label>Title:</label>
                 <input
+                    type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
-                ></input>
+                />
             </div>
             <div>
                 <label>Description:</label>
