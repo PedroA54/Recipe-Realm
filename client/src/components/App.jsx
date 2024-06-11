@@ -7,6 +7,7 @@ import HomePage from '../pages/HomePage';
 import DetailPage from '../pages/DetailPage';
 import ManagementPage from '../pages/ManagementPage';
 import ProfilePage from '../pages/ProfilePage';
+// import Footer from "./Footer";
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
@@ -59,6 +60,7 @@ function App() {
                     <Route path="/signup" component={() => <Signup onLogin={handleLogin} user={user} setUser={setUser} />} />
                     <Route path="/login" component={() => <Login onLogin={handleLogin} user={user} setUser={setUser} />} />
                 </Switch>
+                {/* <Footer /> */}
             </div>
         </Router>
     );
