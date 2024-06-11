@@ -174,6 +174,7 @@ class RecipeListAll(Resource):
                     ingredients=data["ingredients"],
                     instructions=data["instructions"],
                     user_id=user_id,
+                    photo_url=data["photo"],
                 )
                 new_recipe.tags.append(tag)
 
@@ -197,7 +198,13 @@ class RecipeDetail(Resource):
         recipe = Recipe.query.get_or_404(id)
         data = request.get_json()
 
-        for field in ["title", "description", "ingredients", "instructions"]:
+        for field in [
+            "title",
+            "description",
+            "ingredients",
+            "instructions",
+            "phot_url",
+        ]:
             if field in data:
                 setattr(recipe, field, data[field])
 

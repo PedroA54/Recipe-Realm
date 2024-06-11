@@ -96,6 +96,7 @@ function UserRecipes() {
                                     <textarea name="description" value={editedData.description} onChange={handleChange}></textarea>
                                     <textarea name="ingredients" value={editedData.ingredients} onChange={handleChange}></textarea>
                                     <textarea name="instructions" value={editedData.instructions} onChange={handleChange}></textarea>
+                                    <input type="text" name="photo" value={editedData.photo} onChange={handleChange} placeholder="Photo URL" />
                                     <button onClick={cancelEdit}>Cancel</button>
                                     <button onClick={saveEdit}>Save</button>
                                 </div>
@@ -106,6 +107,7 @@ function UserRecipes() {
                                     <p><strong>Description:</strong> {recipe.description}</p>
                                     <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                                     <p><strong>Instructions:</strong> {recipe.instructions}</p>
+                                    <p><strong></strong><img className='recipe-photo' src={recipe.photo} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
                                     <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                                     <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                                     <button onClick={() => handleEdit(recipe.id)}>Edit</button>

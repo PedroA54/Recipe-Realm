@@ -6,6 +6,7 @@ function AddRecipe() {
     const [description, setDescription] = useState('');
     const [ingredients, setIngredients] = useState('');
     const [instructions, setInstructions] = useState('');
+    const [photo, setPhoto] = useState(''); // Initialize to empty string
     const [tag, setTag] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -23,7 +24,8 @@ function AddRecipe() {
                     description: description,
                     ingredients: ingredients,
                     instructions: instructions,
-                    tag: tag  // Corrected the variable name to lowercase and added missing comma
+                    photo: photo,
+                    tag: tag  
                 }),
             });
 
@@ -42,6 +44,7 @@ function AddRecipe() {
             setDescription('');
             setIngredients('');
             setInstructions('');
+            setPhoto('');
             setTag('');
 
         } catch (error) {
@@ -83,6 +86,14 @@ function AddRecipe() {
                     onChange={(e) => setInstructions(e.target.value)}
                     required
                 ></textarea>
+            </div>
+            <div>
+                <label>Photo:</label>
+                <input
+                    type="text" 
+                    value={photo}
+                    onChange={(e) => setPhoto(e.target.value)}
+                />
             </div>
             <div>
                 <label>Category:</label>
