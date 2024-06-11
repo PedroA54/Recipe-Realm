@@ -14,9 +14,6 @@ function NavBar({ user, onLogout }) {
                     <NavLink to="/management" >
                         Manage
                     </NavLink>
-                    <NavLink to="/detail" >
-                        Detail
-                    </NavLink>
                     <NavLink to="/profile" >
                         Profile
                     </NavLink>

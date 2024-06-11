@@ -1,34 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+// /import './AllRecipes.css'; // Create and import a CSS file for styling
 
 function AllRecipes() {
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const history = useHistory();
 
     useEffect(() => {
         fetch('/recipes')
-            .then(response => response.json())
-            .then(data => setRecipes(data))
-            .catch(error => console.error('Error fetching recipes:', error));
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setRecipes(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
+            });
     }, []);
 
     const handleViewClick = (id) => {
         history.push(`/detail/${id}`);
     };
 
+    if (loading) {
+        return <p>Loading recipes...</p>;
+    }
+
+    if (error) {
+        return <p>Error fetching recipes: {error.message}</p>;
+    }
+
     return (
-        <div>
+        <div className="recipe-container">
             <h2>All Recipes</h2>
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (
-                <div>
+                <div className="recipes-list">
                     {recipes.map(recipe => (
-                        <div key={recipe.id}>
+                        <div key={recipe.id} className="recipe-card">
                             <h3>{recipe.title}</h3>
                             <p><strong>Description:</strong> {recipe.description}</p>
                             <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                             <p><strong>Instructions:</strong> {recipe.instructions}</p>
+                            <p><strong></strong><img className='recipe-photo' src={recipe.photo} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
                             <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                             <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                             <button onClick={() => handleViewClick(recipe.id)}>View</button>

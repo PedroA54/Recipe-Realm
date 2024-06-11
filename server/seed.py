@@ -28,6 +28,7 @@ if __name__ == "__main__":
             description="A classic Italian dish",
             ingredients="Pasta, tomato sauce, garlic, olive oil, salt, pepper",
             instructions=" Boil pasta in salted water until al dente. In a separate pan, heat olive oil and sauté minced garlic until fragrant.  Add tomato sauce and simmer for 10 minutes.  Toss cooked pasta with the sauce. Season with salt and pepper to taste.",
+            photo_url="",
             user_id=1,
         )
 
@@ -36,6 +37,7 @@ if __name__ == "__main__":
             description="An American classic",
             ingredients="Ground beef, burger buns, lettuce, tomato, onion, cheese, ketchup, mustard",
             instructions=" Divide ground beef into patties and season with salt and pepper.  Grill or fry the patties until cooked to your liking.  Toast the burger buns on the grill or in a toaster.  Assemble the burger with lettuce, tomato, onion, cheese, ketchup, and mustard.  Serve hot.",
+            photo_url="",
             user_id=2,
         )
         r3 = Recipe(
@@ -43,6 +45,7 @@ if __name__ == "__main__":
             description="A delicious dessert",
             ingredients="Flour, sugar, eggs, butter, milk, vanilla extract, baking powder",
             instructions=" Preheat oven to 350°F (175°C) and grease a baking pan.  In a mixing bowl, cream together butter and sugar until light and fluffy.  Add eggs one at a time, beating well after each addition.  Stir in vanilla extract.  Gradually add flour and baking powder alternately with milk, beginning and ending with flour.  Pour batter into prepared pan and bake for 30-35 minutes or until a toothpick inserted into the center comes out clean.  Let cool before serving.",
+            photo_url="",
             user_id=2,
         )
 

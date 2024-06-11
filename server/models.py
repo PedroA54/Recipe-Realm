@@ -58,6 +58,7 @@ class Recipe(db.Model, SerializerMixin):
     description = Column(Text, nullable=False)
     ingredients = Column(Text, nullable=False)
     instructions = Column(Text, nullable=False)
+    photo_url = db.Column(db.String(255))
     created_at = Column(DateTime, default=datetime.now)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
