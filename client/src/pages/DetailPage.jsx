@@ -15,7 +15,8 @@ function DetailPage({ user }) {
         <div>
             <h2>Recipe Detail</h2>
             <RecipeCard recipeId={id} />
-            <AddComment recipeId={id} /> {}
+            <AddComment recipeId={id} /> 
+            
             <button onClick={redirectToHome}>Back </button>
         </div>
     );

@@ -7,7 +7,6 @@ import HomePage from '../pages/HomePage';
 import DetailPage from '../pages/DetailPage';
 import ManagementPage from '../pages/ManagementPage';
 import ProfilePage from '../pages/ProfilePage';
-// import Footer from "./Footer";
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
@@ -50,17 +49,18 @@ function App() {
     return (
         <Router>
             <div>
-                <NavBar user={user} onLogout={handleLogout} />
+                
+                {user && <NavBar user={user} onLogout={handleLogout} />}
+
                 <Switch>
-                <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
+                    <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
                     <Route path="/home" component={() => <HomePage user={user} />} />
                     <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
-                    <Route path="/signup" component={() => <Signup onLogin={handleLogin} user={user} setUser={setUser} />} />
-                    <Route path="/login" component={() => <Login onLogin={handleLogin} user={user} setUser={setUser} />} />
+
+                    {!user && <Route path="/signup" component={() => <Signup onLogin={handleLogin} />} />}
                 </Switch>
-                {/* <Footer /> */}
             </div>
         </Router>
     );
