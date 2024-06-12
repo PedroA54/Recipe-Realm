@@ -8,19 +8,20 @@ function NavBar({ user, onLogout }) {
 
             {user ? (
                 <>
-                    <NavLink to="/home" >
+                    <NavLink to="/home" className='nav-link'>
                         Home
                     </NavLink>
-                    <NavLink to="/management" >
+                    <NavLink to="/management" className='nav-link'>
                         Manage
                     </NavLink>
-                    <NavLink to="/profile" >
+
+
+                    <NavLink to="/profile" className='nav-link'>
                         Profile
                     </NavLink>
 
-                    <button onClick={onLogout} >
-                        Log Out
-                    </button>
+                    <NavLink to="/" className='nav-link' onClick={onLogout}>Logout</NavLink>
+                    
                 </>
             ) : (
                 <>
