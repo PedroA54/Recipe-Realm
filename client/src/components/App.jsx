@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Signup from '../components/User/Signup';
-import EntryPage from '../pages/EntryPage';
-import HomePage from '../pages/HomePage';
-import DetailPage from '../pages/DetailPage';
 import ManagementPage from '../pages/ManagementPage';
 import ProfilePage from '../pages/ProfilePage';
+import DetailPage from '../pages/DetailPage';
+import EntryPage from '../pages/EntryPage';
+import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
@@ -59,7 +59,6 @@ function App() {
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
                     <Route path="/signup" render={() => <Signup onLogin={handleLogin} user={user}  setUser={setUser}/>} />
 
-                    {!user && <Route path="/signup" component={() => <Signup onLogin={handleLogin} />} />}
                 </Switch>
             </div>
         </Router>
