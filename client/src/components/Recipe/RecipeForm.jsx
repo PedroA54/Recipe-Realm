@@ -103,11 +103,17 @@ function AddRecipe() {
                 >
                     <option value="">Select Category</option>
                     <option value="1">Italian</option>
-                    <option value="2">Mexican</option>
+                    <option value="2">Spanish</option>
                     <option value="3">Asian</option>
-                    <option value="4">Vegetarian</option>
-                    <option value="5">Indian</option>
-                    <option value="6">American</option>
+                    <option value="4">Indian</option>
+                    <option value="5">American</option>
+                    <option value="6">Polish</option>
+                    <option value="7">African</option>
+                    <option value="8">German</option>
+                    <option value="9">Vegan</option>
+                    <option value="10">Vegetarian</option>
+                    <option value="11">Universal</option>
+                    v
                 </select>
             </div>
             <button type="submit">Add Recipe</button>
