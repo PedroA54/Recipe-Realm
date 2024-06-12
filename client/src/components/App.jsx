@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Signup from '../components/User/Signup';
-import Login from '../components/User/Login';
 import EntryPage from '../pages/EntryPage';
 import HomePage from '../pages/HomePage';
 import DetailPage from '../pages/DetailPage';
@@ -58,6 +57,7 @@ function App() {
                     <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
+                    <Route path="/signup" render={() => <Signup onLogin={handleLogin} user={user}  setUser={setUser}/>} />
 
                     {!user && <Route path="/signup" component={() => <Signup onLogin={handleLogin} />} />}
                 </Switch>

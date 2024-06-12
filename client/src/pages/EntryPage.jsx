@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from '../components/User/Login';
 
+
 function EntryPage({ onLogin, user, setUser}) {
     return (
         <>
@@ -9,6 +10,7 @@ function EntryPage({ onLogin, user, setUser}) {
             
             <section>
                 <Login onLogin={onLogin} user={user} setUser={setUser}/>
+                
             </section>
             
             <NavLink to="/signup">
