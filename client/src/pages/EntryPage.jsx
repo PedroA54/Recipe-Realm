@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from '../components/User/Login';
-import Logout from '../components/User/Logout';
+
 
 
 function EntryPage() {
@@ -11,7 +11,7 @@ function EntryPage() {
             
             <section>
                 <Login />
-                <Logout />
+            
             </section>
             
             <NavLink to="/signup" >

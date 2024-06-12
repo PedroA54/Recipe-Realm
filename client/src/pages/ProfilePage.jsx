@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 function ProfilePage({ user }) {
     if (user === null) {
-        return <Redirect to="/login" />
+        return <Redirect to="/" />
     }
     return (
         <>

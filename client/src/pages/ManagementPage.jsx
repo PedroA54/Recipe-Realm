@@ -4,7 +4,7 @@ import UserRecipes from "../components/Recipe/Usersrecipes";
 
 function ManagementPage({ user }) {
     if (user === null) {
-        return <Redirect to="/login" />
+        return <Redirect to="/" />
     }
     return (
         <>
