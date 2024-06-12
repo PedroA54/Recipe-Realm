@@ -51,7 +51,7 @@ function AddRecipe() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="add-recipe-form" onSubmit={handleSubmit}>
             <h2>Add Recipe</h2>
             <div>
                 <label>Title:</label>
@@ -89,7 +89,7 @@ function AddRecipe() {
             <div>
                 <label>Photo:</label>
                 <input
-                    type="text" 
+                    type="text"
                     value={photo}
                     onChange={(e) => setPhoto(e.target.value)}
                 />
@@ -113,13 +113,13 @@ function AddRecipe() {
                     <option value="9">Vegan</option>
                     <option value="10">Vegetarian</option>
                     <option value="11">Universal</option>
-                    v
                 </select>
             </div>
             <button type="submit">Add Recipe</button>
             {successMessage && <p>{successMessage}</p>}
         </form>
     );
+    
 }
 
 export default AddRecipe;
