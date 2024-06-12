@@ -6,7 +6,7 @@ import CategoryTag from "../components/Tags/CategoryTag";
 
 function HomePage({ user }) {
     if (user === null) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/" />;
     }
     return (
         <>

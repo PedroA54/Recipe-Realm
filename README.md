@@ -19,6 +19,9 @@ To download the dependencies for the backend server, run:
 
 ```console
 pipenv install
+```
+
+```console
 pipenv shell
 ```
 

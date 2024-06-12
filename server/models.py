@@ -86,7 +86,6 @@ class Tag(db.Model, SerializerMixin):
     __tablename__ = "tags"
     id = Column(Integer, primary_key=True)
     category = Column(String(100), unique=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.now)
 
     # Relationships
     recipes = relationship("Recipe", secondary="recipe_tags", back_populates="tags")
