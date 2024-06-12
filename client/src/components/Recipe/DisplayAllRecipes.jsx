@@ -51,7 +51,7 @@ function AllRecipes() {
                             <p><strong>Description:</strong> {recipe.description}</p>
                             <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                             <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                            <p><strong></strong><img src={recipe.photo} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
+                            <p><strong></strong><img src={recipe.photo_url} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
                             <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                             <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                             <button onClick={() => handleViewClick(recipe.id)}>View</button>
