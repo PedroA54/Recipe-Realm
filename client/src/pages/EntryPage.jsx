@@ -2,23 +2,18 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from '../components/User/Login';
 
-
-
-function EntryPage() {
+function EntryPage({ onLogin, user, setUser}) {
     return (
         <>
             <h1>This is the entry page</h1>
             
             <section>
-                <Login />
-            
+                <Login onLogin={onLogin} user={user} setUser={setUser}/>
             </section>
             
-            <NavLink to="/signup" >
+            <NavLink to="/signup">
                 Sign Up
             </NavLink>
-            
-            
         </>
     );
 }

@@ -52,7 +52,7 @@ function App() {
             <div>
                 <NavBar user={user} onLogout={handleLogout} />
                 <Switch>
-                    <Route exact path="/" component={EntryPage} />
+                <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
                     <Route path="/home" component={() => <HomePage user={user} />} />
                     <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
