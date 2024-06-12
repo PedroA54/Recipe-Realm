@@ -22,4 +22,37 @@ form {
 
 }
 
+.recipe-container {
+    padding: 20px;
+}
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.recipe-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-photo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.recipe-card h3 {
+    margin-top: 0;
+}
+
+.recipe-card p {
+    margin: 8px 0;
+}
+
 

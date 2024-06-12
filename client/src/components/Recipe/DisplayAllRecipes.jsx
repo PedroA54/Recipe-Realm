@@ -44,14 +44,14 @@ function AllRecipes() {
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (
-                <div className="recipes-list">
+                <div className="recipes-grid">
                     {recipes.map(recipe => (
                         <div key={recipe.id} className="recipe-card">
                             <h3>{recipe.title}</h3>
                             <p><strong>Description:</strong> {recipe.description}</p>
                             <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                             <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                            <p><strong></strong><img src={recipe.photo_url} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
+                            <img src={recipe.photo_url} alt={recipe.title} className="recipe-photo" />
                             <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                             <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                             <button onClick={() => handleViewClick(recipe.id)}>View</button>
