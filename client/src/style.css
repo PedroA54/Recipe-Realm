@@ -16,15 +16,31 @@ body {
 
 
 /*Form for adding Recipe */
+
+.form-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 50vh;           /* Full height of viewport */
+}
 .add-recipe-form {
     background-color:  rgb(159, 191, 159);
-    padding: 0px;
-    border-radius: 0px;
+    padding: 2px;
+    border-radius: 8px;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     text-align: left;
-
 }
+
+.add-recipe-form button {
+    display: block;
+    margin: 20px auto; /* Center the button and add some space above it */
+}
+.Title {
+    text-align: center;
+}
+
+
 /* Recipe Card Container */
 .recipe-container {
     padding: 20px;
@@ -45,6 +61,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Recipe Photo for all */
 .recipe-photo {
     max-width: 100%;
     height: auto;

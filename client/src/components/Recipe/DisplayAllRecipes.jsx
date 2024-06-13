@@ -48,10 +48,10 @@ function AllRecipes() {
                     {recipes.map(recipe => (
                         <div key={recipe.id} className="recipe-card">
                             <h3>{recipe.title}</h3>
-                            <p><strong>Description:</strong> {recipe.description}</p>
-                            <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                            <p><strong>Instructions:</strong> {recipe.instructions}</p>
                             <img src={recipe.photo_url} alt={recipe.title} className="recipe-photo" />
+                            <p><strong></strong> {recipe.description}</p>
+                            <p><strong>Ingredients:</strong> Click View to see details</p>
+                            <p><strong>Instructions:</strong> Click View to see details</p>
                             <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                             <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                             <button onClick={() => handleViewClick(recipe.id)}>View</button>

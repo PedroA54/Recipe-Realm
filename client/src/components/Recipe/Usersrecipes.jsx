@@ -104,10 +104,10 @@ function UserRecipes() {
                                 <div>
                                     {/* Displaying recipe details */}
                                     <h3>{recipe.title}</h3>
+                                    <img src={recipe.photo_url} alt={recipe.title} className="recipe-photo" />
                                     <p><strong>Description:</strong> {recipe.description}</p>
                                     <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
                                     <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                                    <p><strong></strong><img className='recipe-photo' src={recipe.photo} alt={recipe.title} style={{ maxWidth: '200px', maxHeight: '200px' }} /></p>
                                     <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                                     <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
                                     <button onClick={() => handleEdit(recipe.id)}>Edit</button>
