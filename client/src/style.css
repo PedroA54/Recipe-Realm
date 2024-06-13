@@ -3,25 +3,17 @@ body {
     background-color: rgb(159, 191, 159);
 }
 
-/* button {
-    cursor: pointer;
-    background-color: #ff6f3c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-} */
-
-
 
 /*Form for adding Recipe */
 
-.form-container {
+.add-recipe-form-container {
     display: flex;
-    justify-content:center; /* Centers horizontally */
-    align-items: center;     /* Centers vertically */
-    height: 60vh;   /* Full height of viewport */
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 60vh;
+    background-color:white;
+    border-radius: 8px;
 }
 
 .add-recipe-form {

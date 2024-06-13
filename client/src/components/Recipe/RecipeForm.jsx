@@ -50,7 +50,7 @@ function AddRecipe() {
     };
 
     return (
-        <div className="form-container">
+        <div className="add-recipe-form-container">
             <form className="add-recipe-form" onSubmit={handleSubmit}>
                 <h2 className="Title">Add Recipe</h2>
                 <div>
