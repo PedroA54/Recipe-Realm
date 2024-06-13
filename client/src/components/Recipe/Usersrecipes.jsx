@@ -7,7 +7,8 @@ function UserRecipes() {
         title: '',
         description: '',
         ingredients: '',
-        instructions: ''
+        instructions: '',
+        
     });
 
     useEffect(() => {
@@ -18,7 +19,7 @@ function UserRecipes() {
     }, []);
 
     const handleDelete = (recipeId) => {
-        fetch(`/recipes/${recipeId}`, {  // Update endpoint for DELETE request
+        fetch(`/recipes/${recipeId}`, {
             method: 'DELETE',
         })
         .then(response => {
@@ -33,13 +34,13 @@ function UserRecipes() {
 
     const handleEdit = (recipeId) => {
         setEditRecipe(recipeId);
-        // Set default values for editedData
         const selectedRecipe = recipes.find(recipe => recipe.id === recipeId);
         setEditedData({
             title: selectedRecipe.title,
             description: selectedRecipe.description,
             ingredients: selectedRecipe.ingredients,
-            instructions: selectedRecipe.instructions
+            instructions: selectedRecipe.instructions,
+            photo_url: selectedRecipe.photo_url
         });
     };
 
@@ -56,7 +57,7 @@ function UserRecipes() {
     };
 
     const saveEdit = () => {
-        fetch(`/recipes/${editRecipe}`, {  // Update endpoint for PATCH request
+        fetch(`/recipes/${editRecipe}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -65,7 +66,6 @@ function UserRecipes() {
         })
         .then(response => {
             if (response.ok) {
-                // Update the recipe in the local state
                 setRecipes(prevRecipes => prevRecipes.map(recipe => {
                     if (recipe.id === editRecipe) {
                         return { ...recipe, ...editedData };
@@ -81,28 +81,27 @@ function UserRecipes() {
     };
 
     return (
-        <div>
+        <div className="recipe-container-user">
             <h2>All Recipes</h2>
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (
-                <div>
+                <div className="recipes-grid">
                     {recipes.map(recipe => (
-                        <div key={recipe.id}>
+                        <div key={recipe.id} className="recipe-card">
                             {editRecipe === recipe.id ? (
-                                <div>
-                                    {/* Form for editing recipe details */}
-                                    <input type="text" name="title" value={editedData.title} onChange={handleChange} />
-                                    <textarea name="description" value={editedData.description} onChange={handleChange}></textarea>
-                                    <textarea name="ingredients" value={editedData.ingredients} onChange={handleChange}></textarea>
-                                    <textarea name="instructions" value={editedData.instructions} onChange={handleChange}></textarea>
-                                    <input type="text" name="photo" value={editedData.photo} onChange={handleChange} placeholder="Photo URL" />
-                                    <button onClick={cancelEdit}>Cancel</button>
-                                    <button onClick={saveEdit}>Save</button>
-                                </div>
+                                <form className="edit-form-user">
+                                    <div className="edit-field">
+                                    <input type="text" name="title" value={editedData.title} onChange={handleChange} className="edit-input" />
+                                    <textarea name="description" value={editedData.description} onChange={handleChange} className="edit-textarea"></textarea>
+                                    <textarea name="ingredients" value={editedData.ingredients} onChange={handleChange} className="edit-textarea"></textarea>
+                                    <textarea name="instructions" value={editedData.instructions} onChange={handleChange} className="edit-textarea"></textarea>
+                                    <button onClick={cancelEdit} className="cancel-button">Cancel</button>
+                                    <button onClick={saveEdit} className="save-button">Save</button>
+                                    </div>
+                                </form>
                             ) : (
                                 <div>
-                                    {/* Displaying recipe details */}
                                     <h3>{recipe.title}</h3>
                                     <img src={recipe.photo_url} alt={recipe.title} className="recipe-photo" />
                                     <p><strong>Description:</strong> {recipe.description}</p>
@@ -110,8 +109,8 @@ function UserRecipes() {
                                     <p><strong>Instructions:</strong> {recipe.instructions}</p>
                                     <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                                     <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
-                                    <button onClick={() => handleEdit(recipe.id)}>Edit</button>
-                                    <button onClick={() => handleDelete(recipe.id)}>Delete</button>
+                                    <button onClick={() => handleEdit(recipe.id)} className="edit-button">Edit</button>
+                                    <button onClick={() => handleDelete(recipe.id)} className="delete-button">Delete</button>
                                 </div>
                             )}
                         </div>

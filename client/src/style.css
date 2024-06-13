@@ -47,10 +47,10 @@ body {
 .add-recipe-form textarea,
 .add-recipe-form select {
     
-    width: 120%; /* Full width for inputs, textareas, and select */
+    width: 120%;/* Full width for inputs, textareas, and select */
     padding: 8px; /* Padding inside inputs for better appearance */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
+} 
 
 
 /* Recipe Card Container */
@@ -89,3 +89,26 @@ body {
 }
 
 
+/* Recipe For User */
+
+.recipe-container-user {
+    padding: 20px;
+}
+
+
+
+.edit-field {
+    background-color:  white;
+    padding: 2px;
+    border-radius: 8px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+}
+
+.edit-form-user textarea,
+.edit-form-user input {
+    width: 50%;/* Full width for inputs, textareas, and select */
+    padding: 8px; /* Padding inside inputs for better appearance */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
