@@ -10,10 +10,9 @@ function HomePage({ user }) {
     }
     return (
         <>
-            <header>
-                <h1>HomePage</h1>
-            </header>
+            
             <div>
+                
                 <AddRecipe />
                 <AllRecipes />
                 <CategoryTag />

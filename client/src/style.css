@@ -19,9 +19,9 @@ body {
 
 .form-container {
     display: flex;
-    justify-content: center; /* Centers horizontally */
+    justify-content:center; /* Centers horizontally */
     align-items: center;     /* Centers vertically */
-    height: 50vh;           /* Full height of viewport */
+    height: 60vh;           /* Full height of viewport */
 }
 .add-recipe-form {
     background-color:  rgb(159, 191, 159);
@@ -30,6 +30,7 @@ body {
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     text-align: left;
+    
 }
 
 .add-recipe-form button {

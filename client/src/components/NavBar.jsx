@@ -9,6 +9,7 @@ function NavBar({ user, onLogout }) {
             {user ? (
                 <>
                     <h1 className="Title-nav-bar"> Recipe Realm</h1>
+                    
                     <NavLink to="/" className='nav-link' onClick={onLogout}>Logout</NavLink>
                     
                     <NavLink to="/profile" className='nav-link'>
