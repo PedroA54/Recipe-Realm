@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
+import SignUpPage from "../pages/SignUpPage";
 
 function App() {
     const [user, setUser] = useState("");
@@ -57,7 +58,7 @@ function App() {
                     <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
-                    <Route path="/signup" render={() => <Signup onLogin={handleLogin} user={user}  setUser={setUser}/>} />
+                    <Route path="/signup" render={() => <SignUpPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
 
                 </Switch>
             </div>
