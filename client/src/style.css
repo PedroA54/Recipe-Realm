@@ -33,28 +33,20 @@ body {
 }
 
 .add-recipe-form button {
+    
     display: block;
-    margin: 20px auto; /* Center the button and add some space above it */
+    margin: 10px auto; /* Center the button and add some space above it */
 }
+
 .Title {
     text-align: center;
-}
-
-
-tyle for labels and inputs */
-.add-recipe-form div {
-    margin-bottom: 15px; /* Space between each form group */
-}
-
-.add-recipe-form label {
-    display: block; /* Make label a block element */
-    margin-bottom: 5px; /* Space between label and input */
 }
 
 .add-recipe-form input,
 .add-recipe-form textarea,
 .add-recipe-form select {
-    width: 100%; /* Full width for inputs, textareas, and select */
+    
+    width: 120%; /* Full width for inputs, textareas, and select */
     padding: 8px; /* Padding inside inputs for better appearance */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
 }

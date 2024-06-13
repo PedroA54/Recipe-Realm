@@ -54,8 +54,9 @@ function AddRecipe() {
             <form className="add-recipe-form" onSubmit={handleSubmit}>
                 <h2 className="Title">Add Recipe</h2>
                 <div>
-                    <label>Title:</label>
+                    
                     <input
+                        placeholder='Title'
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -63,39 +64,43 @@ function AddRecipe() {
                     />
                 </div>
                 <div>
-                    <label>Description:</label>
+                    
                     <textarea
+                        placeholder='Description'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     ></textarea>
                 </div>
                 <div>
-                    <label>Ingredients:</label>
+                    
                     <textarea
+                        placeholder='Ingredients'
                         value={ingredients}
                         onChange={(e) => setIngredients(e.target.value)}
                         required
                     ></textarea>
                 </div>
                 <div>
-                    <label>Instructions:</label>
+                    
                     <textarea
+                        placeholder='Instructions'
                         value={instructions}
                         onChange={(e) => setInstructions(e.target.value)}
                         required
                     ></textarea>
                 </div>
                 <div>
-                    <label>Photo:</label>
+                    
                     <input
+                        placeholder='Photo'
                         type="text"
                         value={photo}
                         onChange={(e) => setPhoto(e.target.value)}
                     />
                 </div>
                 <div>
-                    <label>Category:</label>
+                    
                     <select
                         value={tag}
                         onChange={(e) => setTag(e.target.value)}
