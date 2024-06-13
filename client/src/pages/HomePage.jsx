@@ -9,13 +9,14 @@ function HomePage({ user }) {
         return <Redirect to="/" />;
     }
     return (
-        <>
-            
-            <div>
+        <> 
+            <div className="home-page-container">
+            <div className="top-row">
+                <CategoryTag className="category-tag" />
+                <AddRecipe className="add-recipe" />
                 
-                <AddRecipe />
-                <AllRecipes />
-                <CategoryTag />
+            </div>
+                <AllRecipes className="all-recipes" />
             </div>
         </>
     );

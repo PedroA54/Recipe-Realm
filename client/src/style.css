@@ -21,15 +21,17 @@ body {
     display: flex;
     justify-content:center; /* Centers horizontally */
     align-items: center;     /* Centers vertically */
-    height: 60vh;           /* Full height of viewport */
+    height: 60vh;   /* Full height of viewport */
 }
+
 .add-recipe-form {
-    background-color:  rgb(159, 191, 159);
+    background-color:  white;
     padding: 2px;
     border-radius: 8px;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 600px;
     text-align: left;
+    max-width: 600px; 
     
 }
 
@@ -307,5 +309,52 @@ body {
     .detail-page-container > :last-child {
         margin-right: 0; /* Reset the right margin on small screens */
         height: auto; /* Reset heights to auto on small screens */
+    }
+}
+
+
+
+/* Home Page Layout*/
+.home-page-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between top row and AllRecipes */
+}
+
+.top-row {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) */
+    gap: 600px; /* Space between AddRecipe and CategoryTag */
+}
+
+.add-recipe {
+    flex: 0 1 auto; /* Allow AddRecipe to grow, but not shrink */
+    margin-right: auto; /* Move AddRecipe to the left */
+}
+
+.category-tag {
+    flex: 0 1 auto; /* Allow CategoryTag to grow, but not shrink */
+    margin-left: auto;
+}
+
+.all-recipes {
+    width: 100%; /* Ensure AllRecipes takes full width */
+}
+
+@media (max-width: 768px) {
+    .home-page-container {
+        padding: 10px;
+    }
+    
+    .top-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .add-recipe,
+    .category-tag {
+        margin: 0;
+        margin-bottom: 20px;
     }
 }
