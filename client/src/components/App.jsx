@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Signup from '../components/User/Signup';
-import Login from '../components/User/Login';
-import EntryPage from '../pages/EntryPage';
-import HomePage from '../pages/HomePage';
-import DetailPage from '../pages/DetailPage';
 import ManagementPage from '../pages/ManagementPage';
 import ProfilePage from '../pages/ProfilePage';
-// import Footer from "./Footer";
+import DetailPage from '../pages/DetailPage';
+import EntryPage from '../pages/EntryPage';
+import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
+import SignUpPage from "../pages/SignUpPage";
 
 function App() {
     const [user, setUser] = useState("");
@@ -50,17 +49,18 @@ function App() {
     return (
         <Router>
             <div>
-                <NavBar user={user} onLogout={handleLogout} />
+                
+                {user && <NavBar user={user} onLogout={handleLogout} />}
+
                 <Switch>
-                    <Route exact path="/" component={EntryPage} />
+                    <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
                     <Route path="/home" component={() => <HomePage user={user} />} />
                     <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
-                    <Route path="/signup" component={() => <Signup onLogin={handleLogin} user={user} setUser={setUser} />} />
-                    <Route path="/login" component={() => <Login onLogin={handleLogin} user={user} setUser={setUser} />} />
+                    <Route path="/signup" render={() => <SignUpPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
+
                 </Switch>
-                {/* <Footer /> */}
             </div>
         </Router>
     );

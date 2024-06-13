@@ -4,12 +4,12 @@ function AddComment({ recipeId }) {
     const [comment, setComment] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
-
+    
     const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
     setSuccess(false);
-
+    
     try {
         const response = await fetch(`/recipes/${recipeId}/comments`, {
         method: 'POST',
@@ -18,7 +18,7 @@ function AddComment({ recipeId }) {
         },
         body: JSON.stringify({ comment }),
         });
-
+        
         if (response.ok) {
         setComment('');
         setSuccess(true);
@@ -30,13 +30,15 @@ function AddComment({ recipeId }) {
         setError('An error occurred: ' + err.message);
     }
     };
-
+    
     return (
-    <div>
+    
+    <div className="comment-recipe-container">
         <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="comment">Add Comment:</label>
-            <input
+        <div className="add-comment-form">
+            <label className="add-comment-title" > Add Comment</label>
+            
+            <input className="comment-input"
             type="text"
             id="comment"
             value={comment}
@@ -44,7 +46,9 @@ function AddComment({ recipeId }) {
             required
             />
         </div>
-        <button type="submit">Submit</button>
+                <div className="submit-button-container">
+                    <button type="submit" className="submit-button">Submit</button>
+                </div>
         </form>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>Comment added successfully!</p>}
