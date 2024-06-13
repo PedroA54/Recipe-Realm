@@ -105,10 +105,117 @@ body {
     max-width: 400px;
     text-align: center;
 }
+.edit-form-user .edit-field {
+    display: flex;
+    flex-direction: column-reverse; /* Reverses the order of items in column layout */
+}
 
-.edit-form-user textarea,
-.edit-form-user input {
-    width: 50%;/* Full width for inputs, textareas, and select */
-    padding: 8px; /* Padding inside inputs for better appearance */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+.edit-form-user .edit-input,
+.edit-form-user .edit-textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Adjust spacing between input and textarea */
+}
+
+.edit-form-user .button-group {
+    margin-top: 10px; /* Adjust spacing between inputs and buttons */
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+}
+
+.edit-form-user .cancel-button,
+.edit-form-user .save-button {
+    margin-left: 15px; /* Add space between buttons */
+    margin-bottom: 10px;
+}
+
+
+
+
+/* Recipe Card*/
+.recipe-card-container {
+    display: flex;
+    justify-content: flex-end; /* Aligns content towards the right */
+    margin: 20px auto; /* Center horizontally */
+    max-width: 800px; /* Adjust width as needed */
+}
+
+.recipe-card-detail {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Adjust width as needed */
+}
+
+.recipe-card-detail .recipe-details {
+    margin-bottom: 20px;
+}
+
+.recipe-card-detail .recipe-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .recipe-details img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .recipe-details p {
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .recipe-details ul {
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .recipe-details li {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.recipe-card-detail .recipe-details h3 {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .comments-section {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.recipe-card-detail .comments-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.recipe-card-detail .comments-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.recipe-card-detail .comments-section ul li {
+    margin-bottom: 10px;
+}
+
+
+/* Recipe Card Comment*/
+
+.add-comment-form {
+    background-color:  rgb(159, 191, 159);
+    border-radius: 8px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    text-align: left;
+
+}
+
+.comment-input {
+    height: 60px; /* Adjust the height as needed */
+    /* Add any other styles you need for the input */
 }

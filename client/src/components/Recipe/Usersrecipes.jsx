@@ -8,7 +8,6 @@ function UserRecipes() {
         description: '',
         ingredients: '',
         instructions: '',
-        
     });
 
     useEffect(() => {
@@ -39,8 +38,8 @@ function UserRecipes() {
             title: selectedRecipe.title,
             description: selectedRecipe.description,
             ingredients: selectedRecipe.ingredients,
-            instructions: selectedRecipe.instructions,
-            photo_url: selectedRecipe.photo_url
+            instructions: selectedRecipe.instructions
+            
         });
     };
 
@@ -92,12 +91,15 @@ function UserRecipes() {
                             {editRecipe === recipe.id ? (
                                 <form className="edit-form-user">
                                     <div className="edit-field">
-                                    <input type="text" name="title" value={editedData.title} onChange={handleChange} className="edit-input" />
-                                    <textarea name="description" value={editedData.description} onChange={handleChange} className="edit-textarea"></textarea>
-                                    <textarea name="ingredients" value={editedData.ingredients} onChange={handleChange} className="edit-textarea"></textarea>
-                                    <textarea name="instructions" value={editedData.instructions} onChange={handleChange} className="edit-textarea"></textarea>
-                                    <button onClick={cancelEdit} className="cancel-button">Cancel</button>
-                                    <button onClick={saveEdit} className="save-button">Save</button>
+                                        <textarea name="description" value={editedData.description} onChange={handleChange} className="edit-textarea"></textarea>
+                                        <textarea name="ingredients" value={editedData.ingredients} onChange={handleChange} className="edit-textarea"></textarea>
+                                        <textarea name="instructions" value={editedData.instructions} onChange={handleChange} className="edit-textarea"></textarea>
+                                        <input type="text" name="title" value={editedData.title} onChange={handleChange} className="edit-input" />
+                                        <div className="button-group">
+                                            <button onClick={saveEdit} className="save-button">Save</button>
+                                            <button onClick={cancelEdit} className="cancel-button">Cancel</button>
+                                            
+                                        </div>
                                     </div>
                                 </form>
                             ) : (

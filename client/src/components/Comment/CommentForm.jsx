@@ -34,7 +34,7 @@ function AddComment({ recipeId }) {
     return (
     <div>
         <form onSubmit={handleSubmit}>
-        <div>
+        <div className="add-comment-form">
             <label htmlFor="comment">Add Comment:</label>
             <input
             type="text"
@@ -42,6 +42,7 @@ function AddComment({ recipeId }) {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             required
+            className="comment-input"
             />
         </div>
         <button type="submit">Submit</button>

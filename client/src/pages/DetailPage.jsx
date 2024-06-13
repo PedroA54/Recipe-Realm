@@ -13,7 +13,7 @@ function DetailPage({ user }) {
     
     return (
         <div>
-            <h2>Recipe </h2>
+            
             <RecipeCard recipeId={id} />
             <AddComment recipeId={id} /> 
             
