@@ -8,12 +8,13 @@ function ProfilePage({ user }) {
     }
     return (
         <>
-        <h1>ProfilePage</h1>
+        
         <header>
-        <h1 className="profile-header">{user ? `${user.userName}'s Profile Page` : 'Profile'}</h1>
+        <h1 className="profile-header">{user ? `${user.userName}'s Profile Page`: 'Profile'}</h1>
         </header>
-
+        <div>
         <Profile />
+        </div>
         </>
     );
 }

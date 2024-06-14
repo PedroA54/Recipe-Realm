@@ -100,14 +100,55 @@ class UserProfile(Resource):
             return {"error": "User not found"}, 404
 
         return {
-            "userName": user.userName,
             "photo_url": user.photo_url,
             "email": user.email,
             "phone": user.phone,
         }, 200
 
+    def patch(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
 
-# ********
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        data = request.get_json()
+
+        if "photo_url" in data:
+            user.photo_url = data["photo_url"]
+        if "email" in data:
+            user.email = data["email"]
+        if "phone" in data:
+            user.phone = data["phone"]
+
+        try:
+            db.session.commit()
+            return {
+                "photo_url": user.photo_url,
+                "email": user.email,
+                "phone": user.phone,
+            }, 200
+        except IntegrityError as e:
+            db.session.rollback()
+            return {"errors": [str(e)]}, 422
+
+    def delete(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        db.session.delete(user)
+        db.session.commit()
+        session.pop("user_id", None)
+        return "", 204
+
+
 # Recipe
 # ********
 
