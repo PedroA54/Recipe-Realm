@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-
 function SignUp({ user, setUser }) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -36,27 +35,29 @@ function SignUp({ user, setUser }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Sign Up</h2>
-            <div>
-                <label>Username:</label>
+        <form onSubmit={handleSubmit} className="signup-container">
+            <h2 className="signup-heading">Sign Up</h2>
+            <div className="signup-input-group">
+                <label className="signup-label">Username:</label>
                 <input
                     type="text"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     required
+                    className="signup-input"
                 />
             </div>
-            <div>
-                <label>Password:</label>
+            <div className="signup-input-group">
+                <label className="signup-label">Password:</label>
                 <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="signup-input"
                 />
             </div>
-            <button type="submit">Sign Up</button>
+            <button type="submit" className="signup-button">Sign Up</button>
         </form>
     );
 }

@@ -50,11 +50,11 @@ function AddRecipe() {
     };
 
     return (
-        <div className="form-container">
+        <div className="add-recipe-form-container">
             <form className="add-recipe-form" onSubmit={handleSubmit}>
                 <h2 className="Title">Add Recipe</h2>
-                <div>
-                    
+
+                <div className="inputs-textarea-select">
                     <input
                         placeholder='Title'
                         type="text"
@@ -63,7 +63,7 @@ function AddRecipe() {
                         required
                     />
                 </div>
-                <div>
+                <div className="inputs-textarea-select">
                     
                     <textarea
                         placeholder='Description'
@@ -72,7 +72,7 @@ function AddRecipe() {
                         required
                     ></textarea>
                 </div>
-                <div>
+                <div className="inputs-textarea-select">
                     
                     <textarea
                         placeholder='Ingredients'
@@ -81,7 +81,7 @@ function AddRecipe() {
                         required
                     ></textarea>
                 </div>
-                <div>
+                <div className="inputs-textarea-select">
                     
                     <textarea
                         placeholder='Instructions'
@@ -90,7 +90,7 @@ function AddRecipe() {
                         required
                     ></textarea>
                 </div>
-                <div>
+                <div className="inputs-textarea-select">
                     
                     <input
                         placeholder='Photo'
@@ -99,9 +99,10 @@ function AddRecipe() {
                         onChange={(e) => setPhoto(e.target.value)}
                     />
                 </div>
-                <div>
-                    
+
+                <div className="inputs-textarea-select">
                     <select
+                        
                         value={tag}
                         onChange={(e) => setTag(e.target.value)}
                         required
@@ -117,10 +118,12 @@ function AddRecipe() {
                         <option value="8">German</option>
                         <option value="9">Vegan</option>
                         <option value="10">Vegetarian</option>
-                        <option value="11">Universal</option>
+                        <option value="11">All Type's</option>
                     </select>
                 </div>
-                <button type="submit">Add Recipe</button>
+                <div className="add-recipe-button-container">
+                <button type="submit" className="add-recipe-button">Add Recipe</button>
+                </div>
                 {successMessage && <p>{successMessage}</p>}
             </form>
         </div>
