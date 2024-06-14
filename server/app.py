@@ -117,7 +117,7 @@ class UserProfile(Resource):
         data = request.get_json()
 
         if "photo_user" in data:
-            user.photo_url = data["photo_user"]
+            user.photo_user = data["photo_user"]
         if "email" in data:
             user.email = data["email"]
         if "phone" in data:
@@ -133,20 +133,6 @@ class UserProfile(Resource):
         except IntegrityError as e:
             db.session.rollback()
             return {"errors": [str(e)]}, 422
-
-    def delete(self):
-        user_id = session.get("user_id")
-        if not user_id:
-            return {"error": "Unauthorized"}, 401
-
-        user = User.query.get(user_id)
-        if not user:
-            return {"error": "User not found"}, 404
-
-        db.session.delete(user)
-        db.session.commit()
-        session.pop("user_id", None)
-        return "", 204
 
 
 # Recipe

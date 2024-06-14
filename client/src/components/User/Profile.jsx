@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 function Profile() {
     const [profile, setProfile] = useState({
-        photo_url: "",
+        photo_user: "",
         email: "",
         phone: "",
     });
-    const [initialProfile, setInitialProfile] = useState(null); // To store initial profile state for editing
-    const [editing, setEditing] = useState(false); // State to track editing mode
+    
+    const [editing, setEditing] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function Profile() {
             })
             .then(data => {
                 setProfile(data);
-                setInitialProfile(data); // Store initial profile data for editing
+            
             })
             .catch(error => setError(error.message));
     }, []);
@@ -49,32 +49,14 @@ function Profile() {
             })
             .then(data => {
                 setProfile(data);
-                setInitialProfile(data); // Update initial profile data after successful update
-                setEditing(false); // Exit editing mode
-            })
-            .catch(error => setError(error.message));
-    };
-
-    const handleDelete = () => {
-        fetch('/user_profile', {
-            method: 'DELETE',
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Handle user logout or redirection after deletion
-                    // For now, just resetting the profile state
-                    setProfile(null);
-                } else {
-                    throw new Error('Failed to delete profile');
-                }
+                
+                setEditing(false);
             })
             .catch(error => setError(error.message));
     };
 
     const handleEdit = () => {
-        // Enter editing mode, copy current profile to state
         setEditing(true);
-        setProfile({ ...initialProfile }); // Reset profile to initial state for editing
     };
 
     if (error) {
@@ -88,8 +70,23 @@ function Profile() {
     return (
         <div>
             <h1>Profile</h1>
-            <img src={profile.photo_url} alt="User Profile" />
+            <img src={profile.photo_user} alt="User Profile" />
             
+            {editing ? (
+                <div>
+                    <label>
+                        <strong>Photo URL: </strong>
+                        <input
+                            type="text"
+                            name="photo_user"
+                            value={profile.photo_user}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                </div>
+            ) : null}
+
             <p>
                 <strong>Email: </strong>
                 {editing ? (
@@ -124,7 +121,6 @@ function Profile() {
             ) : (
                 <button onClick={handleEdit}>Edit</button>
             )}
-            <button onClick={handleDelete}>Delete Profile</button>
         </div>
     );
 }
