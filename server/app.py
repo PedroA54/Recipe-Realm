@@ -100,7 +100,7 @@ class UserProfile(Resource):
             return {"error": "User not found"}, 404
 
         return {
-            "photo_url": user.photo_url,
+            "photo_user": user.photo_user,
             "email": user.email,
             "phone": user.phone,
         }, 200
@@ -116,8 +116,8 @@ class UserProfile(Resource):
 
         data = request.get_json()
 
-        if "photo_url" in data:
-            user.photo_url = data["photo_url"]
+        if "photo_user" in data:
+            user.photo_url = data["photo_user"]
         if "email" in data:
             user.email = data["email"]
         if "phone" in data:
@@ -126,7 +126,7 @@ class UserProfile(Resource):
         try:
             db.session.commit()
             return {
-                "photo_url": user.photo_url,
+                "photo_user": user.photo_user,
                 "email": user.email,
                 "phone": user.phone,
             }, 200

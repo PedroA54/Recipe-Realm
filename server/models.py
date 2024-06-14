@@ -13,7 +13,7 @@ class User(db.Model, SerializerMixin):
     id = Column(Integer, primary_key=True)
     userName = Column(String(100), nullable=False, unique=True)
     _password_hash = Column(String(128), nullable=False)
-    photo_url = db.Column(db.String(255))
+    photo_user = db.Column(db.String(255))
     email = db.Column(db.String)
     phone = db.Column(db.Integer)
     created_at = Column(DateTime, default=datetime.now)
@@ -50,7 +50,7 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(self._password_hash, password)
 
     def __repr__(self):
-        return f"User(id={self.id}, userName='{self.userName}', created_at='{self.created_at}', photo_url='{self.photo_url}', phone='{self.phone}', email='{self.email}')"
+        return f"User(id={self.id}, userName='{self.userName}', created_at='{self.created_at}', photo_url='{self.photo_user}', phone='{self.phone}', email='{self.email}')"
 
 
 # Recipe #
