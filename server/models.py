@@ -30,6 +30,10 @@ class User(db.Model, SerializerMixin):
         "-comments",
         "-_password_hash",
         "-created_at",
+        "-email",
+        "-phone",
+        "-about_me",
+        "-photo_user",
     )
 
     @validates("userName")
