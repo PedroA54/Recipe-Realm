@@ -1,3 +1,4 @@
+import re
 from config import bcrypt, db
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
 from sqlalchemy.ext.associationproxy import association_proxy
@@ -16,6 +17,7 @@ class User(db.Model, SerializerMixin):
     photo_user = db.Column(db.String(255))
     email = db.Column(db.String)
     phone = db.Column(db.Integer)
+    about_me = db.Column(db.String(300))
     created_at = Column(DateTime, default=datetime.now)
 
     # Relationships
@@ -38,6 +40,33 @@ class User(db.Model, SerializerMixin):
             raise ValueError("userName cannot exceed 100 characters")
         return userName
 
+    @validates("about_me")
+    def validate_about_me(self, key, about_me):
+        if about_me and len(about_me) > 300:
+            raise ValueError("about_me cannot exceed 300 characters")
+        return about_me
+
+    @validates("phone")
+    def validate_phone(self, key, phone):
+        # Remove non-numeric characters from phone number
+        phone_digits = re.sub(r"\D", "", phone)
+
+        if len(phone_digits) != 10:
+            raise ValueError("Phone must be a 10-digit number.")
+
+        return phone_digits  # Return cleaned phone number as string
+
+    @validates("email")
+    def validate_email(self, _, email):
+        if not isinstance(email, str):
+            raise TypeError("Email must be a string.")
+        elif not 5 <= len(email) <= 40:
+            raise ValueError(f"Email must be between 5 and 40 characters.")
+        email_regex = r"[^@]+@[^@]+\.[^@]+"
+        if not re.match(email_regex, email):
+            raise ValueError("Invalid email format.")
+        return email
+
     @hybrid_property
     def password_hash(self):
         raise AttributeError("password is not readable")
@@ -50,7 +79,7 @@ class User(db.Model, SerializerMixin):
         return bcrypt.check_password_hash(self._password_hash, password)
 
     def __repr__(self):
-        return f"User(id={self.id}, userName='{self.userName}', created_at='{self.created_at}', photo_url='{self.photo_user}', phone='{self.phone}', email='{self.email}')"
+        return f"User(id={self.id}, userName='{self.userName}', created_at='{self.created_at}', photo_url='{self.photo_user}', phone='{self.phone}', email='{self.email}', about_me='{self.about_me})"
 
 
 # Recipe #
