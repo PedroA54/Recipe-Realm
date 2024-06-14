@@ -89,7 +89,56 @@ class UpdateUser(Resource):
         return {"message": "User updated successfully"}, 200
 
 
-# ********
+class UserProfile(Resource):
+    def get(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        return {
+            "photo_user": user.photo_user,
+            "email": user.email,
+            "phone": user.phone,
+            "about_me": user.about_me,
+        }, 200
+
+    def patch(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        data = request.get_json()
+
+        if "photo_user" in data:
+            user.photo_user = data["photo_user"]
+        if "email" in data:
+            user.email = data["email"]
+        if "phone" in data:
+            user.phone = data["phone"]
+        if "about_me" in data:
+            user.about_me = data["about_me"]
+
+        try:
+            db.session.commit()
+            return {
+                "photo_user": user.photo_user,
+                "email": user.email,
+                "phone": user.phone,
+                "about_me": user.about_me,
+            }, 200
+        except IntegrityError as e:
+            db.session.rollback()
+            return {"errors": [str(e)]}, 422
+
+
 # Recipe
 # ********
 
@@ -272,6 +321,7 @@ api.add_resource(RecipeListUser, "/recipesuser")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
 api.add_resource(CommentRecipe, "/recipes/<int:id>/comments")
 api.add_resource(TagList, "/tags")
+api.add_resource(UserProfile, "/user_profile")
 
 
 @app.errorhandler(404)

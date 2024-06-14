@@ -8,16 +8,17 @@ function EntryPage({ onLogin, user, setUser}) {
         <>
             <h1> Recipe Realm</h1>
             
-            <p> Explore a world of flavors with our curated collection of recipes, perfect for every taste and occasion. Start your culinary adventure today! </p>
             
             <section>
                 <Login onLogin={onLogin} user={user} setUser={setUser}/>
             </section>
             
-            <span>Not a member yet?</span>
-            <NavLink to="/signup">
-                Sign Up
-            </NavLink>
+            <div className="log-in-link">
+                <span>Not a member yet?</span>
+                <NavLink to="/signup">
+                    Sign Up
+                </NavLink>
+            </div>
         </>
     );
 }

@@ -101,7 +101,7 @@ function UserRecipes() {
                                             
                                         </div>
                                     </div>
-                                </form>
+                                </form> 
                             ) : (
                                 <div>
                                     <h3>{recipe.title}</h3>
@@ -111,8 +111,10 @@ function UserRecipes() {
                                     <p><strong>Instructions:</strong> {recipe.instructions}</p>
                                     <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                                     <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
+                                    <div className="button-group">
                                     <button onClick={() => handleEdit(recipe.id)} className="edit-button">Edit</button>
                                     <button onClick={() => handleDelete(recipe.id)} className="delete-button">Delete</button>
+                                    </div>
                                 </div>
                             )}
                         </div>

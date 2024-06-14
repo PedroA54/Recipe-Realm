@@ -54,7 +54,9 @@ function AllRecipes() {
                             <p><strong>Instructions:</strong> Click View to see details</p>
                             <p><strong>Category:</strong> {recipe.tags.map(tag => tag.category).join(', ')}</p>
                             <p><strong>Number Of Comments:</strong> {recipe.comments.length}</p>
-                            <button onClick={() => handleViewClick(recipe.id)}>View</button>
+                            <div className="view-button-group">
+                            <button onClick={() => handleViewClick(recipe.id)} className="view-button">View</button>
+                            </div>
                         </div>
                     ))}
                 </div>

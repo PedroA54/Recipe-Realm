@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import Signup from '../components/User/Signup';
 import ManagementPage from '../pages/ManagementPage';
+import SignUpPage from "../pages/SignUpPage";
 import ProfilePage from '../pages/ProfilePage';
 import DetailPage from '../pages/DetailPage';
 import EntryPage from '../pages/EntryPage';
@@ -9,7 +9,7 @@ import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
 import './NavBar.css';
 import '../style.css';
-import SignUpPage from "../pages/SignUpPage";
+
 
 function App() {
     const [user, setUser] = useState("");
@@ -62,6 +62,7 @@ function App() {
 
                 </Switch>
             </div>
+            
         </Router>
     );
 }

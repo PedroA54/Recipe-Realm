@@ -86,6 +86,29 @@ body {
 
 
 
+/* Button: View Button */
+
+.view-button-group {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px; 
+}
+
+.view-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+.view-button:hover {
+    background-color: #45a049;
+}
+
+
 /*------------------------*/
 /* Recipe Card Container */
 /*----------------------*/
@@ -163,6 +186,49 @@ body {
 .edit-form-user .save-button {
     margin-left: 15px; /* Add space between buttons */
     margin-bottom: 10px;
+}
+
+/* Save and Cancel Button */
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.save-button, .cancel-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.save-button:hover, .cancel-button:hover {
+    background-color: #45a049;
+}
+
+/* Edit and Delete Button */
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.edit-button, .delete-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #45a049;
 }
 
 
@@ -446,6 +512,25 @@ body {
     background-color: #45a049;
 }
 
+/* Log in */
+
+.log-in-link {
+    text-align: center;
+    padding: 20px;
+}
+
+.log-in-link span {
+    margin-right: 10px;
+}
+
+.log-in-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.log-in-link  a:hover {
+    text-decoration: underline;
+}
 
 
 /*---------*/
@@ -500,3 +585,120 @@ body {
 .signup-button:hover {
     background-color: #45a049;
 }
+
+
+/* sign up*/
+
+.signup-link {
+    text-align: center;
+    padding: 20px;
+}
+
+.signup-link span {
+    margin-right: 10px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/*---------------*/
+/* Profile Page */
+/*-------------*/
+
+.profile-container {
+    /* background-image: url('./photos/Splash.png'); */
+    background-color: rgb(159, 191, 159);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px; /* Example: Limiting width for better readability */
+    margin: 20px auto; /* Example: Centering the profile container */
+}
+
+
+
+.profile-photo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
+.profile-image {
+    width: 150px; /* Adjust as necessary */
+    height: 150px; /* Adjust as necessary */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image covers the entire element */
+}
+
+
+.profile-field {
+    margin-bottom: 10px;
+    background-color: #fff; /* Set background color to white */
+    padding: 10px; /* Add padding for spacing */
+}
+
+
+.profile-input,
+.profile-textarea,
+.profile-text {
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 2;
+    max-width: 550px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #161616;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.profile-field {
+    margin-bottom: 15px; /* Adds some space between fields */
+    text-align: center;  /* Centering the text in profile fields */
+}
+
+.profile-label {
+    font-size: 20px; /* Sets text size to 16px */
+}
+
+
+/* Footer */
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
