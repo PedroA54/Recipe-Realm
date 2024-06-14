@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import AddRecipe from "../components/Recipe/RecipeForm";
 import AllRecipes from "../components/Recipe/DisplayAllRecipes";
 import CategoryTag from "../components/Tags/CategoryTag";
-
+import Footer from "../components/Footer";
 function HomePage({ user }) {
     if (user === null) {
         return <Redirect to="/" />;
@@ -17,6 +17,9 @@ function HomePage({ user }) {
                 
             </div>
                 <AllRecipes className="all-recipes" />
+            </div>
+            <div>
+                <Footer />
             </div>
         </>
     );
