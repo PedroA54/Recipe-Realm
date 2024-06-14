@@ -89,6 +89,24 @@ class UpdateUser(Resource):
         return {"message": "User updated successfully"}, 200
 
 
+class UserProfile(Resource):
+    def get(self):
+        user_id = session.get("user_id")
+        if not user_id:
+            return {"error": "Unauthorized"}, 401
+
+        user = User.query.get(user_id)
+        if not user:
+            return {"error": "User not found"}, 404
+
+        return {
+            "userName": user.userName,
+            "photo_url": user.photo_url,
+            "email": user.email,
+            "phone": user.phone,
+        }, 200
+
+
 # ********
 # Recipe
 # ********
@@ -272,6 +290,7 @@ api.add_resource(RecipeListUser, "/recipesuser")
 api.add_resource(RecipeDetail, "/recipes/<int:id>")
 api.add_resource(CommentRecipe, "/recipes/<int:id>/comments")
 api.add_resource(TagList, "/tags")
+api.add_resource(UserProfile, "/user_profile")
 
 
 @app.errorhandler(404)
