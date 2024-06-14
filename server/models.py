@@ -41,20 +41,23 @@ class User(db.Model, SerializerMixin):
         return userName
 
     @validates("about_me")
-    def validate_about_me(self, key, about_me):
+    def validate_about_me(self, _, about_me):
         if about_me and len(about_me) > 300:
             raise ValueError("about_me cannot exceed 300 characters")
         return about_me
 
     @validates("phone")
     def validate_phone(self, key, phone):
-        # Remove non-numeric characters from phone number
+        if phone is None:
+            return None  # Or handle this case based on your requirements
+
+        phone = str(phone)  # Ensure phone is a string
         phone_digits = re.sub(r"\D", "", phone)
 
         if len(phone_digits) != 10:
             raise ValueError("Phone must be a 10-digit number.")
 
-        return phone_digits  # Return cleaned phone number as string
+        return phone_digits
 
     @validates("email")
     def validate_email(self, _, email):

@@ -103,6 +103,7 @@ class UserProfile(Resource):
             "photo_user": user.photo_user,
             "email": user.email,
             "phone": user.phone,
+            "about_me": user.about_me,
         }, 200
 
     def patch(self):
@@ -122,6 +123,8 @@ class UserProfile(Resource):
             user.email = data["email"]
         if "phone" in data:
             user.phone = data["phone"]
+        if "about_me" in data:
+            user.about_me = data["about_me"]
 
         try:
             db.session.commit()
@@ -129,6 +132,7 @@ class UserProfile(Resource):
                 "photo_user": user.photo_user,
                 "email": user.email,
                 "phone": user.phone,
+                "about_me": user.about_me,
             }, 200
         except IntegrityError as e:
             db.session.rollback()

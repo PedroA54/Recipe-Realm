@@ -5,6 +5,7 @@ function Profile() {
         photo_user: "",
         email: "",
         phone: "",
+        about_me: "", // New field for about_me
     });
     
     const [editing, setEditing] = useState(false);
@@ -20,7 +21,6 @@ function Profile() {
             })
             .then(data => {
                 setProfile(data);
-            
             })
             .catch(error => setError(error.message));
     }, []);
@@ -49,7 +49,6 @@ function Profile() {
             })
             .then(data => {
                 setProfile(data);
-                
                 setEditing(false);
             })
             .catch(error => setError(error.message));
@@ -111,6 +110,18 @@ function Profile() {
                     />
                 ) : (
                     <span>{profile.phone}</span>
+                )}
+            </p>
+            <p>
+                <strong>About Me: </strong>
+                {editing ? (
+                    <textarea
+                        name="about_me"
+                        value={profile.about_me}
+                        onChange={handleChange}
+                    />
+                ) : (
+                    <span>{profile.about_me}</span>
                 )}
             </p>
             {editing ? (
