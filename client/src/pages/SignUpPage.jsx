@@ -11,10 +11,10 @@ function SignUpPage({ onLogin, user, setUser}) {
                 <SignUp onLogin={onLogin} user={user} setUser={setUser} />
             </section>
             
-            <span>Already a member?</span>
-            <NavLink to="/">
-                Log In
-            </NavLink>
+            <div className="signup-link">
+			<span>Already a member?</span>
+			<NavLink to="/">Log In</NavLink>
+		    </div>
         </>
 
 

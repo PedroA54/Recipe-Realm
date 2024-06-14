@@ -14,10 +14,13 @@ function EntryPage({ onLogin, user, setUser}) {
                 <Login onLogin={onLogin} user={user} setUser={setUser}/>
             </section>
             
+
+            <div className="log-in-link">
             <span>Not a member yet?</span>
             <NavLink to="/signup">
                 Sign Up
             </NavLink>
+            </div>
         </>
     );
 }

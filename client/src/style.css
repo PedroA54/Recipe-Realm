@@ -446,6 +446,25 @@ body {
     background-color: #45a049;
 }
 
+/* Log in */
+
+.log-in-link {
+    text-align: center;
+    padding: 20px;
+}
+
+.log-in-link span {
+    margin-right: 10px;
+}
+
+.log-in-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.log-in-link  a:hover {
+    text-decoration: underline;
+}
 
 
 /*---------*/
@@ -500,6 +519,28 @@ body {
 .signup-button:hover {
     background-color: #45a049;
 }
+
+
+/* sign up*/
+
+.signup-link {
+    text-align: center;
+    padding: 20px;
+}
+
+.signup-link span {
+    margin-right: 10px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
 
 
 
@@ -562,10 +603,10 @@ body {
 
 .profile-label {
     font-size: 20px; /* Sets text size to 16px */
-
 }
 
 
+/* Footer */
 
 .footer {
     text-align: center;
@@ -585,3 +626,9 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+
+
+
+
+
