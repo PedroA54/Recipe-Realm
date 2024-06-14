@@ -86,6 +86,29 @@ body {
 
 
 
+/* Button: View Button */
+
+.view-button-group {
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px; 
+}
+
+.view-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+.view-button:hover {
+    background-color: #45a049;
+}
+
+
 /*------------------------*/
 /* Recipe Card Container */
 /*----------------------*/
@@ -163,6 +186,49 @@ body {
 .edit-form-user .save-button {
     margin-left: 15px; /* Add space between buttons */
     margin-bottom: 10px;
+}
+
+/* Save and Cancel Button */
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.save-button, .cancel-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.save-button:hover, .cancel-button:hover {
+    background-color: #45a049;
+}
+
+/* Edit and Delete Button */
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.edit-button, .delete-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #45a049;
 }
 
 
@@ -626,6 +692,10 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+
+
+
 
 
 
