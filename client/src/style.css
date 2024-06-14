@@ -507,11 +507,30 @@ body {
 /* Profile Page */
 /*-------------*/
 
-.profile-image {
+.profile-container {
+    /* background-image: url('./photos/Splash.png'); */
+    background-color: rgb(159, 191, 159);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px; /* Example: Limiting width for better readability */
+    margin: 20px auto; /* Example: Centering the profile container */
+}
+
+
+
+.profile-photo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
     max-width: 100%;
-    height: auto;
-    border-radius: 50%; /* Example border-radius for rounded profile image */
-    margin-bottom: 20px; /* Example margin for spacing */
+}
+
+.profile-image {
+    width: 150px; /* Adjust as necessary */
+    height: 150px; /* Adjust as necessary */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image covers the entire element */
 }
 
 
@@ -521,16 +540,27 @@ body {
     padding: 10px; /* Add padding for spacing */
 }
 
-.profile-input, .profile-textarea {
+
+.profile-input,
+.profile-textarea,
+.profile-text {
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 2;
+    max-width: 550px;
     width: 100%;
     padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid #161616;
     border-radius: 4px;
+    text-align: center;
 }
 
-.profile-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #333;
+.profile-field {
+    margin-bottom: 15px; /* Adds some space between fields */
+    text-align: center;  /* Centering the text in profile fields */
+}
+
+.profile-label {
+    font-size: 20px; /* Sets text size to 16px */
+
 }

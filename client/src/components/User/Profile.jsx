@@ -94,32 +94,33 @@ function Profile() {
     }
 
     return (
-        <div>
-            <h1>Profile</h1>
-            <img
-                src={profile.photo_user}
-                alt="User Profile"
-                className="profile-image"
-            />
+        <div className="profile-container">
+            <div className="profile-photo">
+                <img
+                    src={profile.photo_user}
+                    alt="User Profile"
+                    className="profile-image"
+                />
+            </div>
 
             {editing ? (
-                <div>
+                <div className="profile-field">
                     <label>
-                        <strong>Photo URL: </strong>
+                        <strong className="profile-label">Photo URL: </strong>
                         <input
                             type="text"
                             name="photo_user"
                             value={editedProfile.photo_user}
                             onChange={handleChange}
+                            className="profile-input"
                         />
                     </label>
-                    <br />
                 </div>
             ) : null}
 
             <div className="profile-field">
                 <p>
-                    <strong>Email: </strong>
+                    <strong className="profile-label">Email: </strong>
                     {editing ? (
                         <input
                             type="email"
@@ -136,7 +137,7 @@ function Profile() {
 
             <div className="profile-field">
                 <p>
-                    <strong>Phone: </strong>
+                    <strong className="profile-label">Phone: </strong>
                     {editing ? (
                         <input
                             type="tel"
@@ -153,7 +154,7 @@ function Profile() {
 
             <div className="profile-field">
                 <p>
-                    <strong>About Me: </strong>
+                    <strong className="profile-label">About Me: </strong>
                     {editing ? (
                         <textarea
                             name="about_me"
