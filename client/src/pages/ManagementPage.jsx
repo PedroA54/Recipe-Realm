@@ -8,9 +8,7 @@ function ManagementPage({ user }) {
     }
     return (
         <>
-        <header>
-        <h1>ManagementPage</h1>
-        </header>
+        
 
         <div>
             <UserRecipes />

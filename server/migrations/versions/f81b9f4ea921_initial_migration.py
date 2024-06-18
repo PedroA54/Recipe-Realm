@@ -1,8 +1,8 @@
 """initial migration
 
-Revision ID: 41db9150bcb2
+Revision ID: f81b9f4ea921
 Revises: 
-Create Date: 2024-06-11 18:32:46.102828
+Create Date: 2024-06-18 18:08:59.632829
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '41db9150bcb2'
+revision = 'f81b9f4ea921'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,6 @@ def upgrade():
     op.create_table('tags',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('category', sa.String(length=100), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('category')
     )
@@ -29,6 +28,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userName', sa.String(length=100), nullable=False),
     sa.Column('_password_hash', sa.String(length=128), nullable=False),
+    sa.Column('photo_user', sa.String(length=255), nullable=True),
+    sa.Column('email', sa.String(), nullable=True),
+    sa.Column('phone', sa.Integer(), nullable=True),
+    sa.Column('about_me', sa.String(length=300), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('userName')

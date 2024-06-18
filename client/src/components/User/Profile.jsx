@@ -169,15 +169,19 @@ function Profile() {
             </div>
 
             {editing ? (
-                <React.Fragment>
-                    <button onClick={handleUpdate}>Save</button>
-                    <button onClick={cancelEdit}>Cancel</button>
-                </React.Fragment>
+                
+                    <div className="button-group-profile">
+                    <button onClick={handleUpdate} className="save-button-profile">Save</button>
+                    <button onClick={cancelEdit} className="cancel-button-profile">Cancel</button>
+                    </div>
+                
             ) : (
-                <button onClick={handleEdit}>Edit</button>
+                <div className="button-group-profile">
+                <button onClick={handleEdit} className="edit-button-profile">Edit</button>
+                </div>
             )}
         </div>
-    );
+    ); 
 }
 
 export default Profile;

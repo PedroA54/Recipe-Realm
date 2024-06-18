@@ -39,7 +39,7 @@ body {
 .inputs-textarea-select textarea,
 .inputs-textarea-select select {
     width: 80%; /* Full width for inputs, textareas, and select */
-    height: 20px; /* Fixed height for consistency */
+    height: 40px; /* Fixed height for consistency */
     padding: 8px; /* Padding inside inputs for better appearance */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     margin-bottom: 2px; /* Space below each form element */
@@ -47,14 +47,13 @@ body {
     border-radius: 4px; /* Rounded corners for better appearance */
     font-size: 16px; /* Consistent font size */
     text-align: center;
-
+    color: #1b631f;
 }
 
 .inputs-textarea-select textarea {
-    height: 80px; 
+    height: 90px; 
     resize: none; 
 }
-
 
 
 /* Button: AddRecipe */
@@ -153,8 +152,6 @@ body {
     padding: 20px;
 }
 
-
-
 .edit-field {
     background-color:  white;
     padding: 2px;
@@ -230,8 +227,6 @@ body {
 .edit-button:hover, .delete-button:hover {
     background-color: #45a049;
 }
-
-
 
 
 /* Recipe Card*/
@@ -323,12 +318,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
     text-align: left;
-
 }
 
 .comment-input {
     height: 60px; 
-    
 }
 
 .comment-input {
@@ -339,7 +332,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    
 }
 
 
@@ -359,7 +351,6 @@ body {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
-    
 }
 
 .submit-button:hover {
@@ -411,51 +402,40 @@ body {
     }
 }
 
-
-
+/*------------------*/
 /* Home Page Layout*/
+/*----------------*/
+
 .home-page-container {
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between top row and AllRecipes */
+    align-items: center;
+    margin: 0 auto;
 }
 
 .top-row {
     display: flex;
-    justify-content: flex-start; /* Align items to the start (left) */
-    gap: 600px; /* Space between AddRecipe and CategoryTag */
+    width: 82%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.welcome-p {
+    flex: 1;
+    margin: 0;
+    padding: 0 20px;
 }
 
 .add-recipe {
-    flex: 0 1 auto; /* Allow AddRecipe to grow, but not shrink */
-    margin-right: auto; /* Move AddRecipe to the left */
-}
-
-.category-tag {
-    flex: 0 1 auto; /* Allow CategoryTag to grow, but not shrink */
-    margin-left: auto;
+    flex-shrink: 0;
 }
 
 .all-recipes {
-    width: 100%; /* Ensure AllRecipes takes full width */
-}
-
-@media (max-width: 768px) {
-    .home-page-container {
-        padding: 10px;
-    }
-    
-    .top-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .add-recipe,
-    .category-tag {
-        margin: 0;
-        margin-bottom: 20px;
-    }
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 
@@ -607,23 +587,18 @@ body {
     text-decoration: underline;
 }
 
-
-
-
 /*---------------*/
 /* Profile Page */
 /*-------------*/
 
 .profile-container {
-    /* background-image: url('./photos/Splash.png'); */
-    background-color: rgb(159, 191, 159);
+    background-color: rgb(255, 255, 255);
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     max-width: 600px; /* Example: Limiting width for better readability */
     margin: 20px auto; /* Example: Centering the profile container */
 }
-
 
 
 .profile-photo {
@@ -652,12 +627,11 @@ body {
 .profile-textarea,
 .profile-text {
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 2;
     max-width: 550px;
     width: 100%;
     padding: 8px;
-    border: 1px solid #161616;
     border-radius: 4px;
     text-align: center;
 }
@@ -665,19 +639,25 @@ body {
 .profile-field {
     margin-bottom: 15px; /* Adds some space between fields */
     text-align: center;  /* Centering the text in profile fields */
+    border: 1px solid #161616;
 }
 
 .profile-label {
-    font-size: 20px; /* Sets text size to 16px */
+    font-size: 19px; /* Sets text size to 16px */
 }
 
+.profile-header {
+    text-align: center; 
+    font-size: 250%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    
+}
 
 /* Footer */
 
 .footer {
     text-align: center;
     padding: 20px;
-    
 }
 
 .footer p {
@@ -695,10 +675,56 @@ body {
 
 
 
+/* Welcome Paragraph */
+.welcome-p {
+    font-family: 'Arial', sans-serif; /* Choose a suitable font family */
+    font-size: 1.5rem; /* Adjust font size */
+    font-weight: bold; /* Ensure text is bold for emphasis */
+    color: rgb(9, 63, 26); /* Set text color */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Add a subtle shadow effect */
+    padding: 20px; /* Add padding for spacing */
+    display: inline-block; /* Ensure text wraps tightly around content */
+    border-radius: 20px; /* Round the corners for a bubble effect */
+}
 
 
 
 
+/*Buttons Profile Page */
+.button-group-profile {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
 
 
+.edit-button-profile {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; 
+    font-size: 18px;
+    
+}
+.edit-button-profile:hover {
+    background-color: #45a049;
+}
 
+.save-button-profile, .cancel-button-profile {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; 
+    font-size: 18px;
+}
+
+.save-button-profile:hover, 
+.cancel-button-profile:hover {
+    background-color: #45a049;
+}
