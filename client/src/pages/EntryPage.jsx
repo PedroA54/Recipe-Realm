@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 function EntryPage() {
     return (
         <>
-            <h1> Recipe Realm</h1>
+            <h1 className="title-login"> Recipe Realm</h1>
             
             <section>
                 <Login />

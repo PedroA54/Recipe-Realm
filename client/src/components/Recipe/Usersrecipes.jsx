@@ -83,7 +83,7 @@ function UserRecipes() {
     
     return (
         <div className="recipe-container-user">
-            <h2>All Recipes</h2>
+            
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (

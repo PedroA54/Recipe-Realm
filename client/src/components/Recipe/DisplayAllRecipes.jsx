@@ -41,7 +41,7 @@ function AllRecipes() {
     
     return (
         <div className="recipe-container">
-            <h2>All Recipes</h2>
+            <h2 className="all-recipes-title">All Recipes</h2>
             {recipes.length === 0 ? (
                 <p>No recipes available.</p>
             ) : (

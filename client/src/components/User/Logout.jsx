@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { UserContext } from '../UserContext';
 
 function LogOut() {
-    const { setUser } = useContext(UserContext); // Destructure setUser from UserContext
+    const { setUser } = useContext(UserContext); 
     const [loggedOut, setLoggedOut] = useState(false);
 
     const handleLogout = async () => {

@@ -14,8 +14,9 @@ function ManagementPage() {
 
     return (
         <>
-        
-
+        <header>
+        <h1 className="profile-header">{user ? `${user.userName}'s Recipe's`: `Profiles`}</h1>
+        </header>
         <div>
             <UserRecipes />
         </div>

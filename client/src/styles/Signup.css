@@ -71,3 +71,7 @@
 .signup-link a:hover {
     text-decoration: underline;
 }
+
+.title-signup{
+    text-align: center;
+}
