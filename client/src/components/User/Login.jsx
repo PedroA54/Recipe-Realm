@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../styles/Login.css';
+import { UserContext } from '../UserContext';
 
-
-function LogIn({ setUser, user }) {
+function LogIn() {
+    const {user, handleLogin} = useContext(UserContext)
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
@@ -20,7 +21,7 @@ function LogIn({ setUser, user }) {
             .then(response => response.json())
             .then(data => {
                 if (data.id) {
-                    setUser(data)
+                    handleLogin(data)
                 } else {
                     console.error('Login failed:', data.errors);
                 }

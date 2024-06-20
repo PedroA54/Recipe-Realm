@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { UserContext } from '../UserContext';
 
-
-function LogOut({ setUser }) {
+function LogOut() {
+    const {setUser, handleLogout} = useContext(UserContext)
     const [loggedOut, setLoggedOut] = useState(false);
     
     const handleLogout = async () => {

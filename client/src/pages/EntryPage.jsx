@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 
 
 
-function EntryPage({ onLogin, user, setUser}) {
+function EntryPage() {
     return (
         <>
             <h1> Recipe Realm</h1>
             
             <section>
-                <Login onLogin={onLogin} user={user} setUser={setUser}/>
+                <Login />
             </section>
             
             <div className="log-in-link">

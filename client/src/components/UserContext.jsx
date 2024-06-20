@@ -1,16 +1,30 @@
-import React, { createContext, useState } from "react";
 
+import React, { createContext, useState } from 'react';
 
-const UserContext = createContext();
-const UserProvider = ({ children }) => {
-    const [userId, setUserId] = useState("");
-    const [recipes, setRecipes] = useState("")
-    
-    return (
-        <UserContext.Provider value={{ userId, setUserId, recipes, setRecipes }}>
-            {children}
-        </UserContext.Provider>
-    );
+export const UserContext = createContext();
+
+export const UserProvider = ({ children }) => {
+    const [user, setUser] = useState(null); 
+
+    const handleLogin = (userData) => {
+    setUser(userData);
     };
-    
-    export { UserContext, UserProvider };
+
+    const handleLogout = () => {
+    fetch('/logout', {
+        method: 'DELETE',
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.ok) {
+        setUser(null);
+        }
+    });
+    };
+
+    return (
+    <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+        {children}
+    </UserContext.Provider>
+    );
+};
