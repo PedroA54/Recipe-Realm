@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import '../../styles/Signup.css';
+
 
 function SignUp({ user, setUser }) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -16,12 +18,12 @@ function SignUp({ user, setUser }) {
                 },
                 body: JSON.stringify({ userName, password }),
             });
-
+            
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.errors ? errorData.errors.join(', ') : 'Sign Up failed');
             }
-
+            
             const data = await response.json();
             setUser(data)
         } catch (error) {
@@ -29,11 +31,11 @@ function SignUp({ user, setUser }) {
             toast.error(error.message);
         }
     };
-
+    
     if (user) {
         return <Redirect to="/home" />
     }
-
+    
     return (
         <form onSubmit={handleSubmit} className="signup-container">
             <h2 className="signup-heading">Sign Up</h2>

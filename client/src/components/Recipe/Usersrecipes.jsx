@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/UserRecipes.css';
+
 
 function UserRecipes() {
     const [recipes, setRecipes] = useState([]);
@@ -9,14 +11,14 @@ function UserRecipes() {
         ingredients: '',
         instructions: '',
     });
-
+    
     useEffect(() => {
         fetch('/recipesuser')
             .then(response => response.json())
             .then(data => setRecipes(data))
             .catch(error => console.error('Error fetching recipes:', error));
     }, []);
-
+    
     const handleDelete = (recipeId) => {
         fetch(`/recipes/${recipeId}`, {
             method: 'DELETE',
@@ -30,7 +32,7 @@ function UserRecipes() {
         })
         .catch(error => console.error('Error deleting recipe:', error));
     };
-
+    
     const handleEdit = (recipeId) => {
         setEditRecipe(recipeId);
         const selectedRecipe = recipes.find(recipe => recipe.id === recipeId);
@@ -42,11 +44,11 @@ function UserRecipes() {
             
         });
     };
-
+    
     const cancelEdit = () => {
         setEditRecipe(null);
     };
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEditedData(prevState => ({
@@ -54,7 +56,7 @@ function UserRecipes() {
             [name]: value
         }));
     };
-
+    
     const saveEdit = () => {
         fetch(`/recipes/${editRecipe}`, {
             method: 'PATCH',
@@ -78,7 +80,7 @@ function UserRecipes() {
         })
         .catch(error => console.error('Error updating recipe:', error));
     };
-
+    
     return (
         <div className="recipe-container-user">
             <h2>All Recipes</h2>

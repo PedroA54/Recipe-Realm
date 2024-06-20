@@ -1,0 +1,48 @@
+/*------------------*/
+/* Home Page Layout*/
+/*----------------*/
+
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.top-row {
+    display: flex;
+    width: 82%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.welcome-p {
+    flex: 1;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.add-recipe {
+    flex-shrink: 0;
+}
+
+.all-recipes {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Welcome Paragraph */
+
+.welcome-p {
+    font-family: 'Arial', sans-serif; /* Choose a suitable font family */
+    font-size: 1.5rem; /* Adjust font size */
+    font-weight: bold; /* Ensure text is bold for emphasis */
+    color: rgb(9, 63, 26); /* Set text color */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Add a subtle shadow effect */
+    padding: 20px; /* Add padding for spacing */
+    display: inline-block; /* Ensure text wraps tightly around content */
+    border-radius: 20px; /* Round the corners for a bubble effect */
+}

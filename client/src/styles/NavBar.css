@@ -1,7 +1,11 @@
+/*---------*/
+/* NavBar */
+/*-------*/
+
 .navbar {
     background-color: #e4b160;
     overflow: hidden;
-    padding: 25px 0;
+    padding: 10px 0;
 }
 
 .navbar .nav-link {
@@ -30,7 +34,6 @@
 	font-size: large;
     padding: 5px 10px; 
     border-radius: 5px; 
-    
 }
 
 .Title-nav-bar {

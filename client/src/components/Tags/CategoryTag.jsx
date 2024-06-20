@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
+
 function CategoryTag() {
     const [tags, setTags] = useState([]);
     const [showList, setShowList] = useState(false);
-
+    
     useEffect(() => {
         fetch('/tags')
             .then(response => response.json())
             .then(data => setTags(data))
             .catch(error => console.error('Error fetching tags:', error));
     }, []);
-
+    
     const toggleList = () => {
         setShowList(!showList);
     };
     
-
+    
     return (
         <div>
             <h2>All Tags</h2>

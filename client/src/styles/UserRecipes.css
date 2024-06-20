@@ -1,0 +1,85 @@
+/*------------------*/
+/* Recipe For User */
+/*----------------*/
+
+
+.recipe-container-user {
+    padding: 20px;
+}
+
+.edit-field {
+    background-color:  white;
+    padding: 2px;
+    border-radius: 8px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+}
+.edit-form-user .edit-field {
+    display: flex;
+    flex-direction: column-reverse; /* Reverses the order of items in column layout */
+}
+
+.edit-form-user .edit-input,
+.edit-form-user .edit-textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Adjust spacing between input and textarea */
+}
+
+.edit-form-user .button-group {
+    margin-top: 10px; /* Adjust spacing between inputs and buttons */
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+}
+
+.edit-form-user .cancel-button,
+.edit-form-user .save-button {
+    margin-left: 15px; /* Add space between buttons */
+    margin-bottom: 10px;
+}
+
+/* Save and Cancel Button */
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.save-button, .cancel-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.save-button:hover, .cancel-button:hover {
+    background-color: #45a049;
+}
+
+/* Edit and Delete Button */
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Align buttons to the right */
+    margin-top: 10px; /* Example margin */
+}
+
+.edit-button, .delete-button {
+    background-color: rgb(159, 191, 159);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Example margin between buttons */
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #45a049;
+}

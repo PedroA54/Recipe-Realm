@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import '../../styles/Login.css';
 
 
 function LogIn({ setUser, user }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('/login', {
@@ -28,11 +29,11 @@ function LogIn({ setUser, user }) {
                 console.error('Error logging in:', error);
             });
     };
-
+    
     if (user) {
         return <Redirect to="/home" />
     }
-
+    
     return (
         <form onSubmit={handleSubmit} className="login-container">
             <div className="login-input-group">

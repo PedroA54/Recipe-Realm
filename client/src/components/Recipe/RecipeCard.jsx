@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/DetailPage.css';
+
 
 function RecipeCard({ recipeId }) {
     const [recipe, setRecipe] = useState(null);
     const [comments, setComments] = useState([]);
-
+    
     useEffect(() => {
         // Fetch recipe details
         fetch(`/recipes/${recipeId}`)
             .then(response => response.json())
             .then(data => setRecipe(data))
             .catch(error => console.error('Error fetching recipe:', error));
-
+        
         // Fetch comments
         fetch(`/recipes/${recipeId}/comments`)
             .then(response => response.json())
             .then(data => setComments(data))
             .catch(error => console.error('Error fetching comments:', error));
     }, [recipeId]);
-
+    
     if (!recipe) {
         return <div>Loading...</div>;
     }
-
+    
     return (
         <div className="recipe-card-container">
         <div className="recipe-card-detail">

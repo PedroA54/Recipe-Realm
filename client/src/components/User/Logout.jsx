@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 function LogOut({ setUser }) {
     const [loggedOut, setLoggedOut] = useState(false);
-
+    
     const handleLogout = async () => {
         try {
             const response = await fetch('/logout', {
@@ -21,11 +21,11 @@ function LogOut({ setUser }) {
             toast.error('Logout failed. Please try again later.');
         }
     };
-
+    
     if (loggedOut) {
         return <Redirect to="/entry" />;
     }
-
+    
     return (
         <button onClick={handleLogout}>Log Out</button>
     );
