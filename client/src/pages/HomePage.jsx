@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import AllRecipes from "../components/Recipe/DisplayAllRecipes";
 import AddRecipe from "../components/Recipe/RecipeForm";
 import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer";
+import { UserContext } from "../components/UserContext"; 
 import '../styles/HomePage.css';
 
-
-function HomePage({ user }) {
-    if (user === null) {
+function HomePage() {
+    const { user , handleLogout} = useContext(UserContext);
+    
+    if (!user) {
         return <Redirect to="/" />;
     }
+    
+    
     return (
         <> 
             <div className="home-page-container">

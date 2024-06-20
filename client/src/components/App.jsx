@@ -12,7 +12,8 @@ import '../styles/style.css';
 import { UserContext } from './UserContext'; 
 
 function App() {
-    const { handleLogin } = useContext(UserContext); 
+    const { handleLogin} = useContext(UserContext); 
+
 
     useEffect(() => {
     fetch('/check_session', {

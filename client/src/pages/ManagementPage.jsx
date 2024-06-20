@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import UserRecipes from "../components/Recipe/Usersrecipes";
 import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer";
+import { UserContext } from "../components/UserContext"; 
 
+function ManagementPage() {
+    const { user, handleLogout } = useContext(UserContext);
 
-function ManagementPage({ user }) {
-    if (user === null) {
-        return <Redirect to="/" />
+    
+    if (!user) {
+        return <Redirect to="/" />;
     }
+
     return (
         <>
         

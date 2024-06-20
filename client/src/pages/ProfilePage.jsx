@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Profile from "../components/User/Profile";
 import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer";
+import { UserContext } from "../components/UserContext"; 
 
 
-function ProfilePage({ user }) {
-    if (user === null) {
-        return <Redirect to="/" />
+function ProfilePage() {
+    const { user, handleLogout } = useContext(UserContext);
+
+    
+    if (!user) {
+        return <Redirect to="/" />;
     }
     return (
         <>

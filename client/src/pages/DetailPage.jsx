@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from "react";
 import AddComment from '../components/Comment/CommentForm';
 import RecipeCard from '../components/Recipe/RecipeCard';
 import { useParams, Redirect} from 'react-router-dom';
