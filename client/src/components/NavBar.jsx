@@ -5,7 +5,7 @@ import { NavLink} from "react-router-dom";
 function NavBar({ user, onLogout }) {
     return (
         <nav className="navbar">
-
+        
             {user ? (
                 <>
                     <h1 className="Title-nav-bar"> Recipe Realm</h1>
@@ -15,15 +15,15 @@ function NavBar({ user, onLogout }) {
                     <NavLink to="/profile" className='nav-link'>
                         Profile
                     </NavLink>
-                
+                    
                     <NavLink to="/management" className='nav-link'>
                         Manage
                     </NavLink>
-                
+                    
                     <NavLink to="/home" className='nav-link'>
                         Home
                     </NavLink>
-                
+                    
                     
                     
                 </>

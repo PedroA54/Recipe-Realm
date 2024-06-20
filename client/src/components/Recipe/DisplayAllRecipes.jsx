@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../../styles/DisplayRecipes.css';
 
 
 function AllRecipes() {
@@ -7,7 +8,7 @@ function AllRecipes() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const history = useHistory();
-
+    
     useEffect(() => {
         fetch('/recipes')
             .then(response => {
@@ -25,19 +26,19 @@ function AllRecipes() {
                 setLoading(false);
             });
     }, []);
-
+    
     const handleViewClick = (id) => {
         history.push(`/detail/${id}`);
     };
-
+    
     if (loading) {
         return <p>Loading recipes...</p>;
     }
-
+    
     if (error) {
         return <p>Error fetching recipes: {error.message}</p>;
     }
-
+    
     return (
         <div className="recipe-container">
             <h2>All Recipes</h2>

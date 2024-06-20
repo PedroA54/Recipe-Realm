@@ -1,7 +1,9 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import UserRecipes from "../components/Recipe/Usersrecipes";
+import { Redirect } from "react-router-dom";
 import Footer from "../components/Footer";
+
+
 function ManagementPage({ user }) {
     if (user === null) {
         return <Redirect to="/" />

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/Profile.css';
+
 
 function Profile() {
     const [profile, setProfile] = useState({
@@ -7,7 +9,7 @@ function Profile() {
         phone: "",
         about_me: "",
     });
-
+    
     const [editing, setEditing] = useState(false);
     const [editedProfile, setEditedProfile] = useState({
         photo_user: "",
@@ -15,10 +17,10 @@ function Profile() {
         phone: "",
         about_me: "",
     });
-
+    
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(() => {
         fetch('/user_profile')
             .then(response => {
@@ -36,7 +38,7 @@ function Profile() {
                 setLoading(false);
             });
     }, []);
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEditedProfile((prevProfile) => ({
@@ -44,7 +46,7 @@ function Profile() {
             [name]: value,
         }));
     };
-
+    
     const handleUpdate = () => {
         fetch('/user_profile', {
             method: 'PATCH',
@@ -65,7 +67,7 @@ function Profile() {
             })
             .catch(error => setError(error.message));
     };
-
+    
     const handleEdit = () => {
         setEditing(true);
         // Set editedProfile to current profile state when entering edit mode
@@ -73,7 +75,7 @@ function Profile() {
             ...profile,
         });
     };
-
+    
     const cancelEdit = () => {
         setEditing(false);
         // Optionally reset editedProfile back to original profile state
@@ -84,15 +86,15 @@ function Profile() {
             about_me: profile.about_me,
         });
     };
-
+    
     if (loading) {
         return <div>Loading...</div>;
     }
-
+    
     if (error) {
         return <div>Error: {error}</div>;
     }
-
+    
     return (
         <div className="profile-container">
             <div className="profile-photo">
@@ -102,7 +104,7 @@ function Profile() {
                     className="profile-image"
                 />
             </div>
-
+            
             {editing ? (
                 <div className="profile-field">
                     <label>
@@ -117,7 +119,7 @@ function Profile() {
                     </label>
                 </div>
             ) : null}
-
+            
             <div className="profile-field">
                 <p>
                     <strong className="profile-label">Email: </strong>
@@ -134,7 +136,7 @@ function Profile() {
                     )}
                 </p>
             </div>
-
+            
             <div className="profile-field">
                 <p>
                     <strong className="profile-label">Phone: </strong>
@@ -151,7 +153,7 @@ function Profile() {
                     )}
                 </p>
             </div>
-
+            
             <div className="profile-field">
                 <p>
                     <strong className="profile-label">About Me: </strong>
@@ -167,7 +169,7 @@ function Profile() {
                     )}
                 </p>
             </div>
-
+            
             {editing ? (
                 
                     <div className="button-group-profile">

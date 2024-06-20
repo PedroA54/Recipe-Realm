@@ -7,13 +7,13 @@ import DetailPage from '../pages/DetailPage';
 import EntryPage from '../pages/EntryPage';
 import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
-import './NavBar.css';
-import '../style.css';
+import '../styles/NavBar.css';
+import '../styles/style.css';
 
 
 function App() {
     const [user, setUser] = useState("");
-
+    
     useEffect(() => {
         fetch('/check_session', {
             method: 'GET',
@@ -29,11 +29,11 @@ function App() {
                 console.error('Error checking session:', error);
             });
     }, []);
-
+    
     const handleLogin = (userData) => {
         setUser(userData);
     };
-
+    
     const handleLogout = () => {
         fetch('/logout', {
             method: 'DELETE',
@@ -45,13 +45,13 @@ function App() {
                 }
             });
     };
-
+    
     return (
         <Router>
             <div>
                 
                 {user && <NavBar user={user} onLogout={handleLogout} />}
-
+                
                 <Switch>
                     <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
                     <Route path="/home" component={() => <HomePage user={user} />} />
@@ -59,7 +59,6 @@ function App() {
                     <Route path="/management" component={() => <ManagementPage user={user} />} />
                     <Route path="/profile" component={() => <ProfilePage user={user} />} />
                     <Route path="/signup" render={() => <SignUpPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
-
                 </Switch>
             </div>
             

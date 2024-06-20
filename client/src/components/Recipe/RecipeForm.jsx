@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../../styles/AddForm.css';
+
 
 function AddRecipe() {
     const [title, setTitle] = useState('');
@@ -8,10 +10,10 @@ function AddRecipe() {
     const [photo, setPhoto] = useState('');
     const [tag, setTag] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
         try {
             const response = await fetch('/recipes', {
                 method: 'POST',
@@ -27,14 +29,14 @@ function AddRecipe() {
                     tag
                 }),
             });
-
+            
             if (!response.ok) {
                 throw new Error('Failed to add recipe');
             }
-
+            
             const newRecipe = await response.json();
             console.log('Recipe added:', newRecipe);
-
+            
             // Set the success message
             setSuccessMessage('Recipe has been added');
             setTitle('');
@@ -43,17 +45,17 @@ function AddRecipe() {
             setInstructions('');
             setPhoto('');
             setTag('');
-
+        
         } catch (error) {
             console.error('Failed to add recipe:', error);
         }
     };
-
+    
     return (
         <div className="add-recipe-form-container">
             <form className="add-recipe-form" onSubmit={handleSubmit}>
                 <h2 className="Title">Add Recipe</h2>
-
+                
                 <div className="inputs-textarea-select">
                     <input
                         placeholder='Title'
@@ -99,7 +101,7 @@ function AddRecipe() {
                         onChange={(e) => setPhoto(e.target.value)}
                     />
                 </div>
-
+                
                 <div className="inputs-textarea-select">
                     <select
                         
