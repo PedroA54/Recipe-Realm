@@ -6,8 +6,8 @@ import { UserContext } from "../components/UserContext";
 
 
 function ProfilePage() {
-    const { user, handleLogout } = useContext(UserContext);
-
+    const { user } = useContext(UserContext);
+    
     
     if (!user) {
         return <Redirect to="/" />;

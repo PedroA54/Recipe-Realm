@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { UserContext } from "../components/UserContext"; 
 import '../styles/HomePage.css';
 function HomePage() {
-    const { user, handleLogout } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     
     if (!user) {
         return <Redirect to="/" />;
