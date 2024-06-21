@@ -47,18 +47,12 @@ class LogIn(Resource):
         user = User.query.filter_by(userName=username).first()
 
         if user:
-            print(f"User found: {user}")
-            hashed_password = user._password_hash
-            print(f"Stored hashed password: {hashed_password}")
-
-            if bcrypt.check_password_hash(hashed_password, password):
+            if bcrypt.check_password_hash(user._password_hash, password):
                 session["user_id"] = user.id
                 return user.to_dict(), 200
             else:
-                print("Password does not match")
                 return {"errors": ["Invalid username or password"]}, 401
         else:
-            print("User not found")
             return {"errors": ["Invalid username or password"]}, 401
 
 
@@ -252,7 +246,7 @@ class RecipeDetail(Resource):
             "description",
             "ingredients",
             "instructions",
-            "phot_url",
+            "photo_url",
         ]:
             if field in data:
                 setattr(recipe, field, data[field])

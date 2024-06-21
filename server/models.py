@@ -40,8 +40,8 @@ class User(db.Model, SerializerMixin):
     def validate_userName(self, _, userName):
         if not userName:
             raise ValueError("userName cannot be empty")
-        if len(userName) > 100:
-            raise ValueError("userName cannot exceed 100 characters")
+        if len(userName) > 10:
+            raise ValueError("userName cannot exceed 10 characters")
         return userName
 
     @validates("about_me")

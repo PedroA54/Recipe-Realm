@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { UserContext } from "../components/UserContext"; 
 
 function ManagementPage() {
-    const { user, handleLogout } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     
     if (!user) {
