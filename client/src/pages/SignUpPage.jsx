@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 function SignUpPage({ onLogin, user, setUser}) {
     return (
         <>
-            <h1> Recipe Realm</h1>
+            <h1 className="title-signup"> Recipe Realm</h1>
             
             <section>
                 <SignUp onLogin={onLogin} user={user} setUser={setUser} />

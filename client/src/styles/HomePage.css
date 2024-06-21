@@ -45,4 +45,8 @@
     padding: 20px; /* Add padding for spacing */
     display: inline-block; /* Ensure text wraps tightly around content */
     border-radius: 20px; /* Round the corners for a bubble effect */
+    padding: 20px; /* Padding inside the box */
+    background-color: #fff; /* Background color inside the box */
+    border: 1px solid #ccc; /* Border around the text */
+    border-radius: 8px; /* Rounded corners for the text box */
 }

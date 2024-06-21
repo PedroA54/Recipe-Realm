@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { UserContext } from '../UserContext';
 import '../../styles/Signup.css';
 
-
-function SignUp({ user, setUser }) {
+function SignUp() {
+    const { user, handleLogin } = useContext(UserContext);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     
@@ -25,7 +26,7 @@ function SignUp({ user, setUser }) {
             }
             
             const data = await response.json();
-            setUser(data)
+            handleLogin(data); // Update user state upon successful signup
         } catch (error) {
             console.error('Sign Up failed:', error);
             toast.error(error.message);
@@ -33,7 +34,7 @@ function SignUp({ user, setUser }) {
     };
     
     if (user) {
-        return <Redirect to="/home" />
+        return <Redirect to="/home" />;
     }
     
     return (

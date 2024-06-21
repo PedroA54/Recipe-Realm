@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import { NavLink} from "react-router-dom";
+import { UserContext } from "./UserContext";
 
-
-function NavBar({ user, onLogout }) {
+function NavBar() {
+    const {user, handleLogout} = useContext(UserContext)
     return (
         <nav className="navbar">
         
@@ -10,7 +11,7 @@ function NavBar({ user, onLogout }) {
                 <>
                     <h1 className="Title-nav-bar"> Recipe Realm</h1>
                     
-                    <NavLink to="/" className='nav-link' onClick={onLogout}>Logout</NavLink>
+                    <NavLink to="/" className='nav-link' onClick={handleLogout}>Logout</NavLink>
                     
                     <NavLink to="/profile" className='nav-link'>
                         Profile

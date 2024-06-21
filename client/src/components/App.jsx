@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import ManagementPage from '../pages/ManagementPage';
 import SignUpPage from "../pages/SignUpPage";
@@ -9,59 +9,25 @@ import HomePage from '../pages/HomePage';
 import NavBar from './NavBar';
 import '../styles/NavBar.css';
 import '../styles/style.css';
+import { UserContext } from './UserContext'; 
 
 
 function App() {
-    const [user, setUser] = useState("");
-    
-    useEffect(() => {
-        fetch('/check_session', {
-            method: 'GET',
-            credentials: 'include'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.id) {
-                    setUser(data);
-                }
-            })
-            .catch(error => {
-                console.error('Error checking session:', error);
-            });
-    }, []);
-    
-    const handleLogin = (userData) => {
-        setUser(userData);
-    };
-    
-    const handleLogout = () => {
-        fetch('/logout', {
-            method: 'DELETE',
-            credentials: 'include'
-        })
-            .then(response => {
-                if (response.ok) {
-                    setUser(null);
-                }
-            });
-    };
-    
+    const { user } = useContext(UserContext);
+
     return (
         <Router>
             <div>
-                
-                {user && <NavBar user={user} onLogout={handleLogout} />}
-                
+                {user && <NavBar />}
                 <Switch>
-                    <Route exact path="/" render={() => <EntryPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
-                    <Route path="/home" component={() => <HomePage user={user} />} />
-                    <Route path="/detail/:id" component={() => <DetailPage user={user} />} />
-                    <Route path="/management" component={() => <ManagementPage user={user} />} />
-                    <Route path="/profile" component={() => <ProfilePage user={user} />} />
-                    <Route path="/signup" render={() => <SignUpPage onLogin={handleLogin} user={user}  setUser={setUser}/>} />
+                    <Route exact path="/" component={EntryPage} />
+                    <Route path="/home" component={HomePage} />
+                    <Route path="/detail/:id" component={DetailPage} />
+                    <Route path="/management" component={ManagementPage} />
+                    <Route path="/profile" component={ProfilePage} />
+                    <Route path="/signup" component={SignUpPage} />
                 </Switch>
             </div>
-            
         </Router>
     );
 }

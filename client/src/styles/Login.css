@@ -70,3 +70,8 @@
 .log-in-link  a:hover {
     text-decoration: underline;
 }
+
+
+.title-login {
+    text-align: center;
+}
